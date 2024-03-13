@@ -28,6 +28,11 @@ namespace FinancialAssistent.Presenters
             _transactionService = transactionService;
         }
 
+        public TransactionPresenter(EditTransactionForm editTransactionForm, ITransactionService transactionService)
+        {
+            _transactionService = transactionService;
+        }
+
         public void InitializeChartData(int userId, string selectedMonth = null)
         {
             var dataPoints = _transactionService.GetTransactionData(userId, selectedMonth);
@@ -56,6 +61,17 @@ namespace FinancialAssistent.Presenters
         {
             _transactionService.AddTransaction(transaction);
         }
+
+        public void RemoveTransaction(int transactionId)
+        {
+            _transactionService.RemoveTransaction(transactionId);
+        }
+
+        public void UpdateTransaction(Transaction transaction)
+        {
+            _transactionService.UpdateTransaction(transaction);
+        }
+
 
     }
 

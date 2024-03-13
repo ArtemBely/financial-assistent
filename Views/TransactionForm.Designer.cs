@@ -40,13 +40,14 @@
             newCategoryTextbox = new TextBox();
             categoryLabel = new Label();
             addCategoryBtn = new Button();
-            allTransactionListbox = new ListBox();
             allTransactionsListbox = new Label();
             backToAccountBtn = new Button();
             allCategoryListbox = new ListBox();
             categoryListboxLabel = new Label();
             deleteBtn = new Button();
             editBtn = new Button();
+            allTransactionListView = new ListView();
+            allCategoryListView = new ListView();
             SuspendLayout();
             // 
             // addTransactionLabel
@@ -152,15 +153,6 @@
             addCategoryBtn.UseVisualStyleBackColor = true;
             addCategoryBtn.Click += Add_New_Category;
             // 
-            // allTransactionListbox
-            // 
-            allTransactionListbox.FormattingEnabled = true;
-            allTransactionListbox.ItemHeight = 20;
-            allTransactionListbox.Location = new Point(80, 373);
-            allTransactionListbox.Name = "allTransactionListbox";
-            allTransactionListbox.Size = new Size(451, 204);
-            allTransactionListbox.TabIndex = 12;
-            // 
             // allTransactionsListbox
             // 
             allTransactionsListbox.AutoSize = true;
@@ -178,15 +170,15 @@
             backToAccountBtn.TabIndex = 14;
             backToAccountBtn.Text = "Back to account";
             backToAccountBtn.UseVisualStyleBackColor = true;
+            backToAccountBtn.Click += Back_To_Profile;
             // 
             // allCategoryListbox
             // 
-            allCategoryListbox.FormattingEnabled = true;
             allCategoryListbox.ItemHeight = 20;
             allCategoryListbox.Location = new Point(735, 373);
             allCategoryListbox.Name = "allCategoryListbox";
-            allCategoryListbox.Size = new Size(176, 204);
-            allCategoryListbox.TabIndex = 15;
+            allCategoryListbox.Size = new Size(177, 204);
+            allCategoryListbox.TabIndex = 19;
             // 
             // categoryListboxLabel
             // 
@@ -205,6 +197,7 @@
             deleteBtn.TabIndex = 17;
             deleteBtn.Text = "Delete";
             deleteBtn.UseVisualStyleBackColor = true;
+            deleteBtn.Click += Delete_Transaction;
             // 
             // editBtn
             // 
@@ -214,6 +207,29 @@
             editBtn.TabIndex = 18;
             editBtn.Text = "Edit";
             editBtn.UseVisualStyleBackColor = true;
+            editBtn.Click += EditBtn_Click;
+            // 
+            // allTransactionListView
+            // 
+            allTransactionListView.FullRowSelect = true;
+            allTransactionListView.GridLines = true;
+            allTransactionListView.Location = new Point(80, 373);
+            allTransactionListView.Name = "allTransactionListView";
+            allTransactionListView.Size = new Size(451, 204);
+            allTransactionListView.TabIndex = 19;
+            allTransactionListView.UseCompatibleStateImageBehavior = false;
+            allTransactionListView.View = View.Details;
+            // 
+            // allCategoryListView
+            // 
+            allCategoryListView.FullRowSelect = true;
+            allCategoryListView.GridLines = true;
+            allCategoryListView.Location = new Point(735, 373);
+            allCategoryListView.Name = "allCategoryListView";
+            allCategoryListView.Size = new Size(176, 204);
+            allCategoryListView.TabIndex = 15;
+            allCategoryListView.UseCompatibleStateImageBehavior = false;
+            allCategoryListView.View = View.Details;
             // 
             // TransactionForm
             // 
@@ -223,10 +239,10 @@
             Controls.Add(editBtn);
             Controls.Add(deleteBtn);
             Controls.Add(categoryListboxLabel);
-            Controls.Add(allCategoryListbox);
             Controls.Add(backToAccountBtn);
             Controls.Add(allTransactionsListbox);
-            Controls.Add(allTransactionListbox);
+            Controls.Add(allTransactionListView);
+            Controls.Add(allCategoryListView);
             Controls.Add(addCategoryBtn);
             Controls.Add(categoryLabel);
             Controls.Add(newCategoryTextbox);
@@ -240,10 +256,12 @@
             Controls.Add(amountBtn);
             Controls.Add(addTransactionLabel);
             Name = "TransactionForm";
+            Text = "Transactions";
             Load += TransactionForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
+
 
         private Label addTransactionLabel;
         private TextBox amountBtn;
@@ -260,12 +278,13 @@
 
         #endregion
 
-        private ListBox allTransactionListbox;
         private Label allTransactionsListbox;
         private Button backToAccountBtn;
         private ListBox allCategoryListbox;
         private Label categoryListboxLabel;
         private Button deleteBtn;
         private Button editBtn;
+        private ListView allTransactionListView;
+        private ListView allCategoryListView;
     }
 }

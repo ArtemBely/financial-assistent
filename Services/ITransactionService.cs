@@ -16,5 +16,9 @@ namespace FinancialAssistent.Services
 
         void AddTransaction(Transaction transaction);
 
+        void RemoveTransaction(int transactionId);
+
+        void UpdateTransaction(Transaction transaction);
+
     }
 }

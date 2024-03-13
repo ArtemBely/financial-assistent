@@ -169,12 +169,13 @@ namespace FinancialAssistent.Views
             Controls.Add(aiHelper);
 
             Name = "UserProfileForm";
-            Text = "UserProfileForm";
+            Text = "User Profile";
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
             Load += UserProfileForm_Load;
+            Activated += UserProfileForm_Load;
 
             ((System.ComponentModel.ISupportInitialize)(chartExpenses)).EndInit();
 

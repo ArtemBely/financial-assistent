@@ -11,5 +11,7 @@ namespace FinancialAssistent.Repositories
     {
         public List<Transaction> FetchTransactions(int userId);
         void AddTransaction(Transaction transaction);
+        void RemoveTransaction(int transactionId);
+        void UpdateTransaction(Transaction transaction);
     }
 }

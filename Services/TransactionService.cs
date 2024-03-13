@@ -78,6 +78,16 @@ namespace FinancialAssistent.Services
        public void AddTransaction(Transaction transaction)
        {
             repository.AddTransaction(transaction);
+       }
+
+        public void RemoveTransaction(int transactionId)
+        {
+            repository.RemoveTransaction(transactionId);
+        }
+
+        public void UpdateTransaction(Transaction transaction)
+        {
+            repository.UpdateTransaction(transaction);
         }
     }
 

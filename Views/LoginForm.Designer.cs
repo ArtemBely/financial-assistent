@@ -40,19 +40,23 @@
             // emailTextBox
             // 
             emailTextBox.Location = new Point(390, 163);
+            emailTextBox.Name = "emailTextBox";
             emailTextBox.Size = new Size(242, 27);
             emailTextBox.TabIndex = 0;
             // 
             // passwordTextBox
             // 
             passwordTextBox.Location = new Point(390, 196);
+            passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(242, 27);
             passwordTextBox.TabIndex = 1;
             passwordTextBox.UseSystemPasswordChar = true;
+            passwordTextBox.TextChanged += passwordTextBox_TextChanged;
             // 
             // loginButton
             // 
             loginButton.Location = new Point(390, 240);
+            loginButton.Name = "loginButton";
             loginButton.Size = new Size(242, 32);
             loginButton.TabIndex = 2;
             loginButton.Text = "Login";
@@ -66,12 +70,10 @@
             Controls.Add(emailTextBox);
             Controls.Add(passwordTextBox);
             Controls.Add(loginButton);
-            Name = "LoginForm";
-            Text = "Login Form";
-
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-
+            Name = "LoginForm";
+            Text = "Login";
             Load += LoginForm_Load_1;
             ResumeLayout(false);
             PerformLayout();

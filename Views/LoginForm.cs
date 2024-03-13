@@ -41,11 +41,17 @@ namespace FinancialAssistent.Views
         {
             Hide();
             UserProfileForm userProfileForm = new UserProfileForm(user);
+            userProfileForm.Location = Location;
             userProfileForm.FormClosed += (s, args) => Show();
             userProfileForm.Show();
         }
 
         private void LoginForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }

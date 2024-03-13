@@ -54,14 +54,15 @@ namespace FinancialAssistent.Views
                 MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            private void TransactionChoose_Click(object sender, EventArgs e)
-            {
-                Hide();
-                TransactionForm transactionForm = new TransactionForm(_user.UserId);
-                transactionForm.FormClosed += (s, args) => Show();
-                transactionForm.Show();
-            }
-
+        private void TransactionChoose_Click(object sender, EventArgs e)
+        {
+            Hide();
+            TransactionForm transactionForm = new TransactionForm(_user.UserId);
+            transactionForm.Location = Location;
+            transactionForm.FormClosed += (s, args) => Show();
+            transactionForm.Show();
         }
+
+      }
 
     }

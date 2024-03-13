@@ -38,6 +38,26 @@ namespace FinancialAssistent.Repositories
             }
         }
 
+        public void UpdateTransaction(Transaction transaction)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var query = System.Configuration.ConfigurationManager.AppSettings["UpdateTransactionQuery"];
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Date", transaction.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+                    command.Parameters.AddWithValue("@Amount", transaction.Amount);
+                    command.Parameters.AddWithValue("@CategoryId", transaction.CategoryId);
+                    command.Parameters.AddWithValue("@TransactionId", transaction.TransactionId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
         public List<Transaction> FetchTransactions(int userId)
         {
             var transactions = new List<Transaction>();
@@ -72,6 +92,22 @@ namespace FinancialAssistent.Repositories
                 throw;
             }
             return transactions;
+        }
+
+        public void RemoveTransaction(int transactionId)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                var query = System.Configuration.ConfigurationManager.AppSettings["DeleteOneTransactionsQuery"];
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TransactionId", transactionId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
     }

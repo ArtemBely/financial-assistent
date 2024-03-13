@@ -12,6 +12,7 @@ namespace FinancialAssistent.Views
         private CategoryPresenter _categoryPresenter;
         private bool _categoriesLoaded = false;
         private List<Category> allCategories;
+        private List<Transaction> allTransactions;
 
 
         public TransactionForm(int userId)
@@ -32,6 +33,33 @@ namespace FinancialAssistent.Views
                 _categoriesLoaded = true;
             }
         }
+
+        private void EditBtn_Click(object sender, EventArgs e)
+        {
+            var transactionId = GetSelectedTransactionId();
+            if (!transactionId.HasValue)
+            {
+                return;
+            }
+
+            Transaction transactionToEdit = allTransactions.FirstOrDefault(t => t.TransactionId == transactionId.Value);
+            if (transactionToEdit != null)
+            {
+                EditTransactionForm editForm = new EditTransactionForm(transactionToEdit, allCategories);
+                editForm.TransactionUpdated += EditForm_TransactionUpdated;
+                editForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Transaction not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void EditForm_TransactionUpdated(object sender, EventArgs e)
+        {
+            _presenter.LoadTransactions(_userId);
+        }
+
 
         private void AddTransactionBtn_Click(object sender, EventArgs e)
         {
@@ -61,23 +89,49 @@ namespace FinancialAssistent.Views
 
         public void UpdateTransactionsList(List<Transaction> transactions)
         {
-            allTransactionListbox.Items.Clear();
+            allTransactions = transactions;
+            allTransactionListView.Items.Clear();
+
+            if (allTransactionListView.Columns.Count == 0)
+            {
+                allTransactionListView.Columns.Add("ID", -2, HorizontalAlignment.Left);
+                allTransactionListView.Columns.Add("Date", -2, HorizontalAlignment.Left);
+                allTransactionListView.Columns.Add("Amount", -2, HorizontalAlignment.Left);
+                allTransactionListView.Columns.Add("Category ID", -2, HorizontalAlignment.Left);
+            }
+
             foreach (var transaction in transactions)
             {
-                allTransactionListbox.Items.Add($"ID: {transaction.TransactionId}, Date: {transaction.Date.ToShortDateString()}, Amount: {transaction.Amount}, Category ID: {transaction.CategoryId}");
+                var item = new ListViewItem($"{transaction.TransactionId}");
+                item.SubItems.Add(transaction.Date.ToShortDateString());
+                item.SubItems.Add(transaction.Amount.ToString());
+                item.SubItems.Add(transaction.CategoryId.ToString());
+
+                allTransactionListView.Items.Add(item);
             }
+            allTransactionListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            allTransactionListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         public void UpdateCategories(List<Category> categories)
         {
             categoryCombobox.Items.Clear();
-            allCategoryListbox.Items.Clear();
+            allCategoryListView.Items.Clear();
+
+            if (allCategoryListView.Columns.Count == 0)
+            {
+                allCategoryListView.Columns.Add("Category", -2, HorizontalAlignment.Left);
+            }
+
             allCategories = categories;
             foreach (var category in categories)
             {
                 categoryCombobox.Items.Add(category.CategoryName);
-                allCategoryListbox.Items.Add($"Category: {category.CategoryName}");
+                var item = new ListViewItem($"{category.CategoryName}");
+                allCategoryListView.Items.Add(item);
             }
+            allCategoryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            allCategoryListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
 
@@ -101,6 +155,40 @@ namespace FinancialAssistent.Views
                 MessageBox.Show("Category name cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void Back_To_Profile(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void Delete_Transaction(object sender, EventArgs e)
+        {
+            var transactionId = GetSelectedTransactionId();
+            if (!transactionId.HasValue)
+            {
+                return;
+            }
+
+            _presenter.RemoveTransaction(transactionId.Value);
+            _presenter.LoadTransactions(_userId);
+        }
+
+
+        private int? GetSelectedTransactionId()
+        {
+            if (allTransactionListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a transaction.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
+            }
+            var selectedItem = allTransactionListView.SelectedItems[0];
+            if (int.TryParse(selectedItem.Text, out int transactionId))
+            {
+                return transactionId;
+            }
+            return null;
+        }
+
 
     }
 }
