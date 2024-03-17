@@ -20,15 +20,25 @@ namespace FinancialAssistent.Services
             categoryRepository = new CategoryRepository(_connectionString);
         }
 
-        public void AddCategory(string category)
+        public bool AddCategory(string category)
         {
-            categoryRepository.AddCategory(category);
+            return categoryRepository.AddCategory(category);
         }
 
         public List<Category> GetCategories()
         {
             return categoryRepository.FetchCategories();
 
+        }
+
+        public void RemoveCategory(string categoryName)
+        {
+            categoryRepository.RemoveCategory(categoryName);
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            categoryRepository.UpdateCategory(category);
         }
     }
 }

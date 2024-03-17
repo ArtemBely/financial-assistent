@@ -48,6 +48,8 @@
             editBtn = new Button();
             allTransactionListView = new ListView();
             allCategoryListView = new ListView();
+            editCategoryBtn = new Button();
+            deleteCategoryBtn = new Button();
             SuspendLayout();
             // 
             // addTransactionLabel
@@ -191,7 +193,7 @@
             // 
             // deleteBtn
             // 
-            deleteBtn.Location = new Point(537, 412);
+            deleteBtn.Location = new Point(537, 408);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(94, 29);
             deleteBtn.TabIndex = 17;
@@ -207,7 +209,7 @@
             editBtn.TabIndex = 18;
             editBtn.Text = "Edit";
             editBtn.UseVisualStyleBackColor = true;
-            editBtn.Click += EditBtn_Click;
+            editBtn.Click += Edit_Transaction;
             // 
             // allTransactionListView
             // 
@@ -224,6 +226,7 @@
             // 
             allCategoryListView.FullRowSelect = true;
             allCategoryListView.GridLines = true;
+            allCategoryListView.LabelEdit = true;
             allCategoryListView.Location = new Point(735, 373);
             allCategoryListView.Name = "allCategoryListView";
             allCategoryListView.Size = new Size(176, 204);
@@ -231,11 +234,33 @@
             allCategoryListView.UseCompatibleStateImageBehavior = false;
             allCategoryListView.View = View.Details;
             // 
+            // editCategoryBtn
+            // 
+            editCategoryBtn.Location = new Point(635, 513);
+            editCategoryBtn.Name = "editCategoryBtn";
+            editCategoryBtn.Size = new Size(94, 29);
+            editCategoryBtn.TabIndex = 20;
+            editCategoryBtn.Text = "Edit";
+            editCategoryBtn.UseVisualStyleBackColor = true;
+            editCategoryBtn.Click += Edit_Category;
+            // 
+            // deleteCategoryBtn
+            // 
+            deleteCategoryBtn.Location = new Point(635, 548);
+            deleteCategoryBtn.Name = "deleteCategoryBtn";
+            deleteCategoryBtn.Size = new Size(94, 29);
+            deleteCategoryBtn.TabIndex = 21;
+            deleteCategoryBtn.Text = "Delete";
+            deleteCategoryBtn.UseVisualStyleBackColor = true;
+            deleteCategoryBtn.Click += Delete_Category;
+            // 
             // TransactionForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(990, 681);
+            Controls.Add(deleteCategoryBtn);
+            Controls.Add(editCategoryBtn);
             Controls.Add(editBtn);
             Controls.Add(deleteBtn);
             Controls.Add(categoryListboxLabel);
@@ -262,7 +287,6 @@
             PerformLayout();
         }
 
-
         private Label addTransactionLabel;
         private TextBox amountBtn;
         private Label amountLabel;
@@ -286,5 +310,7 @@
         private Button editBtn;
         private ListView allTransactionListView;
         private ListView allCategoryListView;
+        private Button editCategoryBtn;
+        private Button deleteCategoryBtn;
     }
 }

@@ -9,7 +9,9 @@ namespace FinancialAssistent.Repositories
 {
     internal interface ICategoryRepository
     {
-        public List<Category> FetchCategories();
-        public void AddCategory(string category);
+        List<Category> FetchCategories();
+        bool AddCategory(string category);
+        void RemoveCategory(string categoryName);
+        void UpdateCategory(Category category);
     }
 }

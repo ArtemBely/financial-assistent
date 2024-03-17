@@ -34,6 +34,7 @@
             categoryCombobox = new ComboBox();
             saveBtn = new Button();
             cancelBtn = new Button();
+            categoryNameTextbox = new TextBox();
             SuspendLayout();
             // 
             // dateTimePicker2
@@ -85,11 +86,19 @@
             cancelBtn.Text = "Cancel";
             cancelBtn.UseVisualStyleBackColor = true;
             // 
+            // categoryNameTextbox
+            // 
+            categoryNameTextbox.Location = new Point(88, 162);
+            categoryNameTextbox.Name = "categoryNameTextbox";
+            categoryNameTextbox.Size = new Size(250, 27);
+            categoryNameTextbox.TabIndex = 7;
+            // 
             // EditTransactionForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(431, 358);
+            Controls.Add(categoryNameTextbox);
             Controls.Add(cancelBtn);
             Controls.Add(saveBtn);
             Controls.Add(categoryCombobox);
@@ -111,5 +120,6 @@
         private ComboBox categoryCombobox;
         private Button saveBtn;
         private Button cancelBtn;
+        private TextBox categoryNameTextbox;
     }
 }

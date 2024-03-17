@@ -10,6 +10,8 @@ namespace FinancialAssistent.Services
     internal interface ICategoryService
     {
         List<Category> GetCategories();
-        void AddCategory(string category);
+        bool AddCategory(string category);
+        void RemoveCategory(string categoryName);
+        void UpdateCategory(Category category);
     }
 }

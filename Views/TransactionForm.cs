@@ -34,7 +34,7 @@ namespace FinancialAssistent.Views
             }
         }
 
-        private void EditBtn_Click(object sender, EventArgs e)
+        private void Edit_Transaction(object sender, EventArgs e)
         {
             var transactionId = GetSelectedTransactionId();
             if (!transactionId.HasValue)
@@ -55,11 +55,38 @@ namespace FinancialAssistent.Views
             }
         }
 
+        private void Edit_Category(object sender, EventArgs e)
+        {
+            string categoryName = GetSelectedCategoryName();
+            if (string.IsNullOrEmpty(categoryName))
+            {
+                MessageBox.Show("Please select a category to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Category categoryToEdit = allCategories.FirstOrDefault(c => c.CategoryName.Equals(categoryName, StringComparison.OrdinalIgnoreCase));
+            if (categoryToEdit != null)
+            {
+                EditTransactionForm editForm = new EditTransactionForm(categoryToEdit);
+                editForm.CategoryUpdated += EditForm_CategoryUpdated;
+                editForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Category not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
         private void EditForm_TransactionUpdated(object sender, EventArgs e)
         {
             _presenter.LoadTransactions(_userId);
         }
 
+        private void EditForm_CategoryUpdated(object sender, EventArgs e)
+        {
+            _categoryPresenter.LoadCategories();
+        }
 
         private void AddTransactionBtn_Click(object sender, EventArgs e)
         {
@@ -173,6 +200,19 @@ namespace FinancialAssistent.Views
             _presenter.LoadTransactions(_userId);
         }
 
+        private void Delete_Category(object sender, EventArgs e)
+        {
+            var categoryName = GetSelectedCategoryName();
+            if (string.IsNullOrEmpty(categoryName))
+            {
+                return;
+            }
+
+            _categoryPresenter.RemoveCategory(categoryName);
+            _categoryPresenter.LoadCategories();
+        }
+
+
 
         private int? GetSelectedTransactionId()
         {
@@ -187,6 +227,18 @@ namespace FinancialAssistent.Views
                 return transactionId;
             }
             return null;
+        }
+
+        private string GetSelectedCategoryName()
+        {
+            if (allCategoryListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a category.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
+            }
+
+            var selectedItem = allCategoryListView.SelectedItems[0];
+            return selectedItem.Text;
         }
 
 

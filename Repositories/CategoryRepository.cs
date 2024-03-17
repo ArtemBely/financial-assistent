@@ -2,10 +2,13 @@
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace FinancialAssistent.Repositories
 {
@@ -19,20 +22,33 @@ namespace FinancialAssistent.Repositories
             this.connectionString = connectionString;
         }
 
-        public void AddCategory(string category)
+        public bool AddCategory(string category)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                var query = System.Configuration.ConfigurationManager.AppSettings["InsertNewCategory"];
-                using (var command = new SQLiteCommand(query, connection))
+                using (var connection = new SQLiteConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@CategoryName", category);
-                    command.ExecuteNonQuery();
+                    connection.Open();
+
+                    var query = System.Configuration.ConfigurationManager.AppSettings["InsertNewCategory"];
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@CategoryName", category);
+                        command.ExecuteNonQuery();
+                    }
+                    return true;
                 }
             }
+            catch (SQLiteException ex)
+            {
+                if (ex.ResultCode == SQLiteErrorCode.Constraint)
+                {
+                    return false;
+                }
+                throw;
+            }
         }
+
 
         public List<Category> FetchCategories()
         {
@@ -64,6 +80,39 @@ namespace FinancialAssistent.Repositories
                 throw;
             }
             return categories;
+        }
+
+        public void RemoveCategory(string categoryName)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                var query = System.Configuration.ConfigurationManager.AppSettings["DeleteOneCategoryQuery"];
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CategoryName", categoryName);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var query = System.Configuration.ConfigurationManager.AppSettings["UpdateCategoryQuery"];
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.Add(new SQLiteParameter("@CategoryName", DbType.String) { Value = category.CategoryName });
+                    command.Parameters.Add(new SQLiteParameter("@CategoryId", DbType.Int32) { Value = category.CategoryId });
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

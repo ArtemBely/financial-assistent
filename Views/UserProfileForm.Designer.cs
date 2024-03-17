@@ -46,50 +46,88 @@ namespace FinancialAssistent.Views
             newTransaction = new Button();
             aiHelper = new Button();
             monthComboBox = new ComboBox();
-
             chartExpenses = new Chart();
             ChartArea chartArea1 = new ChartArea();
             Legend legend1 = new Legend();
             Series series1 = new Series();
 
             ((System.ComponentModel.ISupportInitialize)(chartExpenses)).BeginInit();
-
+            phoneNumberLabel = new Label();
+            phoneNumber = new Label();
+            dateOfBirthLabel = new Label();
+            dateOfBirthContent = new Label();
+            editProfileBtn = new Button();
             SuspendLayout();
-
-            panelHeader.BackColor = Color.LightGray;
-            panelHeader.Dock = DockStyle.Top;
-            panelHeader.Size = new Size(ClientSize.Width, 60);
             // 
             // labelFirstName
             // 
             labelFirstName.AutoSize = true;
-            labelFirstName.Location = new Point(30, 92);
-            labelFirstName.Font = new Font("Arial", 10, FontStyle.Regular);
+            labelFirstName.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             labelFirstName.ForeColor = Color.Black;
+            labelFirstName.Location = new Point(30, 92);
             labelFirstName.Name = "labelFirstName";
-            labelFirstName.Size = new Size(0, 20);
+            labelFirstName.Size = new Size(0, 19);
             labelFirstName.TabIndex = 0;
+            // 
+            // panelHeader
+            // 
+            panelHeader.BackColor = Color.LightGray;
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(990, 60);
+            panelHeader.TabIndex = 0;
             // 
             // labelEmail
             // 
             labelEmail.AutoSize = true;
-            labelEmail.Location = new Point(30, 132);
-            labelEmail.Font = new Font("Arial", 10, FontStyle.Regular);
+            labelEmail.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             labelEmail.ForeColor = Color.Black;
+            labelEmail.Location = new Point(30, 132);
             labelEmail.Name = "labelEmail";
-            labelEmail.Size = new Size(0, 20);
+            labelEmail.Size = new Size(0, 19);
             labelEmail.TabIndex = 2;
             // 
             // labelYear
             // 
             labelYear.AutoSize = true;
-            labelYear.Location = new Point(30, 330);
-            labelYear.Font = new Font("Arial", 10, FontStyle.Regular);
+            labelYear.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
             labelYear.ForeColor = Color.Black;
+            labelYear.Location = new Point(30, 330);
             labelYear.Name = "labelYear";
-            labelYear.Text = "Information for year 2024";
-            labelYear.Size = new Size(0, 20);
+            labelYear.Size = new Size(195, 19);
             labelYear.TabIndex = 2;
+            labelYear.Text = "Information for year 2024";
+            // 
+            // chooseMonthBtn
+            // 
+            chooseMonthBtn.Location = new Point(30, 413);
+            chooseMonthBtn.Name = "chooseMonthBtn";
+            chooseMonthBtn.Size = new Size(152, 29);
+            chooseMonthBtn.TabIndex = 4;
+            chooseMonthBtn.Text = "Choose";
+            chooseMonthBtn.UseVisualStyleBackColor = true;
+            chooseMonthBtn.Click += ButtonChoose_Click;
+            // 
+            // newTransaction
+            // 
+            newTransaction.Location = new Point(30, 480);
+            newTransaction.Name = "newTransaction";
+            newTransaction.Size = new Size(152, 29);
+            newTransaction.TabIndex = 4;
+            newTransaction.Text = "Add Transaction";
+            newTransaction.UseVisualStyleBackColor = true;
+            newTransaction.Click += TransactionChoose_Click;
+            // 
+            // aiHelper
+            // 
+            aiHelper.Location = new Point(30, 524);
+            aiHelper.Name = "aiHelper";
+            aiHelper.Size = new Size(152, 29);
+            aiHelper.TabIndex = 4;
+            aiHelper.Text = "AI Helper";
+            aiHelper.UseVisualStyleBackColor = true;
+            aiHelper.Click += ButtonChoose_Click;
             // 
             // chartExpenses
             // 
@@ -123,41 +161,67 @@ namespace FinancialAssistent.Views
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"});
             // 
-            // chooseMonthBtn
+            // phoneNumberLabel
             // 
-            chooseMonthBtn.Location = new Point(30, 413);
-            chooseMonthBtn.Name = "chooseMonthBtn";
-            chooseMonthBtn.Size = new Size(152, 29);
-            chooseMonthBtn.TabIndex = 4;
-            chooseMonthBtn.Text = "Choose";
-            chooseMonthBtn.UseVisualStyleBackColor = true;
-            chooseMonthBtn.Click += ButtonChoose_Click;
+            phoneNumberLabel.AutoSize = true;
+            phoneNumberLabel.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            phoneNumberLabel.ForeColor = Color.Black;
+            phoneNumberLabel.Location = new Point(30, 196);
+            phoneNumberLabel.Name = "phoneNumberLabel";
+            phoneNumberLabel.Size = new Size(0, 20);
+            phoneNumberLabel.TabIndex = 5;
             // 
-            // newTransaction
+            // phoneNumber
             // 
-            newTransaction.Location = new Point(30, 480);
-            newTransaction.Name = "newTransaction";
-            newTransaction.Size = new Size(152, 29);
-            newTransaction.TabIndex = 4;
-            newTransaction.Text = "Add Transaction";
-            newTransaction.UseVisualStyleBackColor = true;
-            newTransaction.Click += TransactionChoose_Click;
+            phoneNumber.AutoSize = true;
+            phoneNumber.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            phoneNumber.ForeColor = Color.Black;
+            phoneNumber.Location = new Point(30, 176);
+            phoneNumber.Text = "Tel:";
+            phoneNumber.Name = "phoneNumber";
+            phoneNumber.Size = new Size(0, 20);
+            phoneNumber.TabIndex = 5;
             // 
-            // aiHelper
+            // dateOfBirthLabel
             // 
-            aiHelper.Location = new Point(30, 524);
-            aiHelper.Name = "aiHelper";
-            aiHelper.Size = new Size(152, 29);
-            aiHelper.TabIndex = 4;
-            aiHelper.Text = "AI Helper";
-            aiHelper.UseVisualStyleBackColor = true;
-            aiHelper.Click += ButtonChoose_Click;
+            dateOfBirthLabel.AutoSize = true;
+            dateOfBirthLabel.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dateOfBirthLabel.ForeColor = Color.Black;
+            dateOfBirthLabel.Location = new Point(30, 236);
+            dateOfBirthLabel.Name = "dateOfBirthLabel";
+            dateOfBirthLabel.Size = new Size(94, 20);
+            dateOfBirthLabel.TabIndex = 6;
+            dateOfBirthLabel.Text = "Date of birth:";
+            // 
+            // dateOfBirthContent
+            // 
+            dateOfBirthContent.AutoSize = true;
+            dateOfBirthContent.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dateOfBirthContent.ForeColor = Color.Black;
+            dateOfBirthContent.Location = new Point(30, 256);
+            dateOfBirthContent.Name = "dateOfBirthContent";
+            dateOfBirthContent.Size = new Size(0, 20);
+            dateOfBirthContent.TabIndex = 7;
+            // 
+            // editProfileBtn
+            // 
+            editProfileBtn.Location = new Point(322, 161);
+            editProfileBtn.Name = "editProfileBtn";
+            editProfileBtn.Size = new Size(94, 29);
+            editProfileBtn.TabIndex = 8;
+            editProfileBtn.Text = "Edit profile";
+            editProfileBtn.UseVisualStyleBackColor = true;
             // 
             // UserProfileForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(990, 681);
+            Controls.Add(editProfileBtn);
+            Controls.Add(dateOfBirthContent);
+            Controls.Add(dateOfBirthLabel);
+            Controls.Add(phoneNumber);
+            Controls.Add(phoneNumberLabel);
             Controls.Add(panelHeader);
             Controls.Add(labelEmail);
             Controls.Add(labelFirstName);
@@ -167,18 +231,13 @@ namespace FinancialAssistent.Views
             Controls.Add(chooseMonthBtn);
             Controls.Add(newTransaction);
             Controls.Add(aiHelper);
-
-            Name = "UserProfileForm";
-            Text = "User Profile";
-
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-
-            Load += UserProfileForm_Load;
+            Name = "UserProfileForm";
+            Text = "User Profile";
             Activated += UserProfileForm_Load;
-
+            Load += UserProfileForm_Load;
             ((System.ComponentModel.ISupportInitialize)(chartExpenses)).EndInit();
-
             ResumeLayout(false);
             PerformLayout();
         }
@@ -194,5 +253,10 @@ namespace FinancialAssistent.Views
         private Label labelEmail;
         private Label labelYear;
         private Chart chartExpenses;
+        private Label phoneNumberLabel;
+        private Label phoneNumber;
+        private Label dateOfBirthLabel;
+        private Label dateOfBirthContent;
+        private Button editProfileBtn;
     }
 }
