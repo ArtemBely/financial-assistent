@@ -65,6 +65,13 @@ namespace FinancialAssistent.Views
             transactionForm.Show();
         }
 
+        private void EditProfileBtn_Click(object sender, EventArgs e)
+        {
+            ChangeRequestForm changeRequestForm = new ChangeRequestForm(_user);
+            changeRequestForm.ShowDialog();
+        }
+
+
     }
 
 }

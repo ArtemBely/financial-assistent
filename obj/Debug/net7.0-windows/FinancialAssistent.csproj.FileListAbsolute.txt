@@ -105,3 +105,4 @@ C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\Microsoft
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.Views.AIHelperForm.resources
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.Views.TransactionForm.resources
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.Views.EditTransactionForm.resources
+C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.Views.ChangeRequestForm.resources

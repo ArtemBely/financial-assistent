@@ -211,6 +211,7 @@ namespace FinancialAssistent.Views
             editProfileBtn.TabIndex = 8;
             editProfileBtn.Text = "Edit profile";
             editProfileBtn.UseVisualStyleBackColor = true;
+            editProfileBtn.Click += EditProfileBtn_Click;
             // 
             // UserProfileForm
             // 

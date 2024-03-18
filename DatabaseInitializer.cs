@@ -30,7 +30,8 @@ namespace FinancialAssistent
                 Email TEXT NOT NULL UNIQUE,
                 PasswordHash TEXT NOT NULL,
                 DateOfBirth TEXT NOT NULL,
-                PhoneNumber TEXT
+                PhoneNumber TEXT,
+                RoleId INTEGER
             );
             """;
                 command.ExecuteNonQuery();
@@ -40,7 +41,7 @@ namespace FinancialAssistent
         {
             string dbPath = "jasonbourne.db";
             string connectionString = $"Data Source={dbPath}";
-            string password = "bourne";
+            string password = "admin";
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password); // Хеширование пароля
 
             using (var connection = new SqliteConnection(connectionString))
@@ -50,14 +51,15 @@ namespace FinancialAssistent
                 var command = connection.CreateCommand();
                 command.CommandText =
                 """
-        INSERT INTO User (FirstName, LastName, Email, PasswordHash, DateOfBirth, PhoneNumber) VALUES ($firstName, $lastName, $email, $passwordHash, $dateOfBirth, $phoneNumber);
+        INSERT INTO User (FirstName, LastName, Email, PasswordHash, DateOfBirth, PhoneNumber, RoleId) VALUES ($firstName, $lastName, $email, $passwordHash, $dateOfBirth, $phoneNumber, $roleId);
         """;
-                command.Parameters.AddWithValue("$firstName", "Jason");
-                command.Parameters.AddWithValue("$lastName", "Bourne");
-                command.Parameters.AddWithValue("$email", "jasonbourne@mail.com");
+                command.Parameters.AddWithValue("$firstName", "Alan");
+                command.Parameters.AddWithValue("$lastName", "Smith");
+                command.Parameters.AddWithValue("$email", "admin");
                 command.Parameters.AddWithValue("$passwordHash", passwordHash); // Используем хешированный пароль
-                command.Parameters.AddWithValue("$dateOfBirth", "1996-01-01");
-                command.Parameters.AddWithValue("$phoneNumber", "1234567890");
+                command.Parameters.AddWithValue("$dateOfBirth", "1994-01-01");
+                command.Parameters.AddWithValue("$phoneNumber", "420987654");
+                command.Parameters.AddWithValue("roleId", 2);
 
                 command.ExecuteNonQuery();
             }
