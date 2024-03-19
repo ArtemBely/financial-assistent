@@ -39,6 +39,7 @@
             phoneLabel = new Label();
             dateOfBirthLabel = new Label();
             sendRequestBtn = new Button();
+            statusNotificationLabel = new Label();
             SuspendLayout();
             // 
             // nameLabel
@@ -129,12 +130,24 @@
             sendRequestBtn.TabIndex = 10;
             sendRequestBtn.Text = "Send request";
             sendRequestBtn.UseVisualStyleBackColor = true;
+            sendRequestBtn.Click += AddChangeRequestBtn_Click;
+            // 
+            // statusNotificationLabel
+            // 
+            statusNotificationLabel.AutoSize = true;
+            statusNotificationLabel.Location = new Point(42, 22);
+            statusNotificationLabel.Name = "statusNotificationLabel";
+            statusNotificationLabel.Size = new Size(247, 20);
+            statusNotificationLabel.TabIndex = 11;
+            statusNotificationLabel.Text = "Your request is in processing status...";
+            statusNotificationLabel.Visible = false;
             // 
             // ChangeRequestForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(406, 414);
+            Controls.Add(statusNotificationLabel);
             Controls.Add(sendRequestBtn);
             Controls.Add(dateOfBirthLabel);
             Controls.Add(phoneLabel);
@@ -166,5 +179,6 @@
         private Label phoneLabel;
         private Label dateOfBirthLabel;
         private Button sendRequestBtn;
+        private Label statusNotificationLabel;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinancialAssistent.Models
 {
-    internal class ChangeRequest
+    public class ChangeRequest
     {
         public int ChangeRequestId { get; set; }
         public int UserId { get; set; }
