@@ -1,4 +1,5 @@
-﻿using FinancialAssistent.Repositories;
+﻿using FinancialAssistent.Models;
+using FinancialAssistent.Repositories;
 using FinancialAssistent.Services;
 using FinancialAssistent.Views;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FinancialAssistent.Presenters
 {
@@ -15,11 +17,12 @@ namespace FinancialAssistent.Presenters
         private readonly IUserLoginView _view;
         private readonly IUserService _userService;
 
-        public UserLoginPresenter(IUserLoginView view)
+        public UserLoginPresenter(IUserLoginView view, IUserService userService)
         {
             _view = view;
-            _userService = new UserService(new UserRepository());
+            _userService = userService;
         }
+
 
         public void Login(string email, string password)
         {
@@ -33,6 +36,12 @@ namespace FinancialAssistent.Presenters
                 _view.ShowErrorMessage("Wrong password");
             }
         }
+
+        public User GetUserByEmail(string email)
+        {
+            return _userService.GetUserByEmail(email);
+        }
+        
     }
 
 }

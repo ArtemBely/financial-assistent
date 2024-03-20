@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace FinancialAssistent.Services
 {
-    public interface IUserService
+    internal interface IAdminService
     {
-        User AuthenticateUser(string email, string password);
-        User GetUserByEmail(string email);
-        void RegisterUser(User user);
+        List<User> FetchUsers();
     }
 }

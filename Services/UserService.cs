@@ -11,17 +11,24 @@ namespace FinancialAssistent.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
-        private UserRepository userRepository;
 
-        public UserService(IUserRepository userRepository)
+        private readonly string _connectionString;
+        private readonly IUserRepository _userRepository;
+
+        public UserService()
         {
-            _userRepository = userRepository;
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            _userRepository = new UserRepository(connectionString);
         }
 
         public UserService(UserRepository userRepository)
         {
-            this.userRepository = userRepository;
+            _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ConnectionString;
+            if (_connectionString == null)
+            {
+                throw new InvalidOperationException("Connection string doesn't exist.");
+            }
+            userRepository = new UserRepository(_connectionString);
         }
 
         public User AuthenticateUser(string email, string password)
@@ -65,9 +72,13 @@ namespace FinancialAssistent.Services
             return user;
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _userRepository.GetUserByEmail(email);
+        }
+
         public void RegisterUser(User user)
         {
-            // Реализация регистрации пользователя
         }
     }
 }

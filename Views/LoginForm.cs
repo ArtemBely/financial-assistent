@@ -1,16 +1,19 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Presenters;
+using FinancialAssistent.Services;
+using System.Windows.Forms;
 
 namespace FinancialAssistent.Views
 {
     public partial class LoginForm : Form, IUserLoginView
     {
-        private UserLoginPresenter _presenter;
+        private readonly UserLoginPresenter _presenter;
 
         public LoginForm()
         {
             InitializeComponent();
-            _presenter = new UserLoginPresenter(this);
+            IUserService userService = new UserService();
+            _presenter = new UserLoginPresenter(this, userService);
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -40,10 +43,21 @@ namespace FinancialAssistent.Views
         public void LoginSuccessful(User user)
         {
             Hide();
-            UserProfileForm userProfileForm = new UserProfileForm(user);
-            userProfileForm.Location = Location;
-            userProfileForm.FormClosed += (s, args) => Show();
-            userProfileForm.Show();
+            User actualUser = _presenter.GetUserByEmail(user.Email);
+            if (actualUser.RoleId == 1)
+            {
+                UserProfileForm userProfileForm = new UserProfileForm(user);
+                userProfileForm.Location = Location;
+                userProfileForm.FormClosed += (s, args) => Show();
+                userProfileForm.Show();
+            }
+            else if (actualUser.RoleId == 2)
+            {
+                AdminDashboardForm adminDashboardForm = new AdminDashboardForm();
+                adminDashboardForm.Location = Location;
+                adminDashboardForm.FormClosed += (s, args) => Show();
+                adminDashboardForm.Show();
+            }
         }
 
         private void LoginForm_Load_1(object sender, EventArgs e)
