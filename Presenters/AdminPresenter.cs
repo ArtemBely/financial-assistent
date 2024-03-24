@@ -23,10 +23,6 @@ namespace FinancialAssistent.Presenters
         public void LoadCustomers()
         {
             var users = _adminService.FetchUsers();
-            foreach (var user in users)
-            {
-                Console.WriteLine($"ID: {user.UserId}, Date: {user.DateOfBirth}, Amount: {user.Email}");
-            }
             adminDashboardForm.UpdateUsersList(users);
         }
     }

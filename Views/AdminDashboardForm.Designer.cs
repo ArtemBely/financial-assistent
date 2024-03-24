@@ -63,7 +63,7 @@
             usersListview.TabIndex = 15;
             usersListview.UseCompatibleStateImageBehavior = false;
             usersListview.View = View.Details;
-            usersListview.SelectedIndexChanged += usersListview_SelectedIndexChanged;
+            //usersListview.SelectedIndexChanged += usersListview_SelectedIndexChanged;
             // 
             // AdminDashboardForm
             // 

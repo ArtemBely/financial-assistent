@@ -27,11 +27,6 @@ namespace FinancialAssistent.Views
             _presenter = new AdminPresenter(this, new AdminService());
         }
 
-        private void usersListview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void AdminDashboardForm_Load(object sender, EventArgs e)
         {
             _presenter.LoadCustomers();
@@ -67,10 +62,13 @@ namespace FinancialAssistent.Views
             usersListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-
         private void Show_Requests(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Hide();
+            AdminRequestsForm adminRequestsForm = new AdminRequestsForm();
+            adminRequestsForm.Location = Location;
+            adminRequestsForm.FormClosed += (s, args) => Show();
+            adminRequestsForm.Show();
         }
     }
 }

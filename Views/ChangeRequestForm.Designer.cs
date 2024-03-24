@@ -40,6 +40,7 @@
             dateOfBirthLabel = new Label();
             sendRequestBtn = new Button();
             statusNotificationLabel = new Label();
+            rejectBtn = new Button();
             SuspendLayout();
             // 
             // nameLabel
@@ -126,7 +127,7 @@
             // 
             sendRequestBtn.Location = new Point(50, 324);
             sendRequestBtn.Name = "sendRequestBtn";
-            sendRequestBtn.Size = new Size(188, 29);
+            sendRequestBtn.Size = new Size(147, 29);
             sendRequestBtn.TabIndex = 10;
             sendRequestBtn.Text = "Send request";
             sendRequestBtn.UseVisualStyleBackColor = true;
@@ -142,11 +143,22 @@
             statusNotificationLabel.Text = "Your request is in processing status...";
             statusNotificationLabel.Visible = false;
             // 
+            // rejectBtn
+            // 
+            rejectBtn.Location = new Point(203, 324);
+            rejectBtn.Name = "rejectBtn";
+            rejectBtn.Size = new Size(150, 29);
+            rejectBtn.TabIndex = 12;
+            rejectBtn.Text = "Reject";
+            rejectBtn.UseVisualStyleBackColor = true;
+            rejectBtn.Click += RejectBtn_Click;
+            // 
             // ChangeRequestForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(406, 414);
+            Controls.Add(rejectBtn);
             Controls.Add(statusNotificationLabel);
             Controls.Add(sendRequestBtn);
             Controls.Add(dateOfBirthLabel);
@@ -180,5 +192,6 @@
         private Label dateOfBirthLabel;
         private Button sendRequestBtn;
         private Label statusNotificationLabel;
+        private Button rejectBtn;
     }
 }

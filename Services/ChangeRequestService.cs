@@ -28,6 +28,16 @@ namespace FinancialAssistent.Services
         {
             return repository.FindPendingRequestByUserId(userId);
         }
+
+        public List<ChangeRequest> GetAllChanges()
+        {
+           return repository.GetAllChanges();
+        }
+
+        public void UpdateChangeRequest(ChangeRequest changeRequest)
+        {
+            repository.UpdateChangeRequest(changeRequest);
+        }
     }
 
 }

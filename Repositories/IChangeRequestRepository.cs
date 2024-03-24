@@ -9,7 +9,9 @@ namespace FinancialAssistent.Repositories
 {
     internal interface IChangeRequestRepository
     {
+        List<ChangeRequest> GetAllChanges();
         void AddChangeRequest(ChangeRequest changeRequest);
         ChangeRequest FindPendingRequestByUserId(int userId);
+        void UpdateChangeRequest(ChangeRequest changeRequest);
     }
 }

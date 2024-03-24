@@ -1,4 +1,5 @@
 ﻿using FinancialAssistent.Models;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -43,6 +44,7 @@ namespace FinancialAssistent.Repositories
             }
         }
 
+
         public ChangeRequest FindPendingRequestByUserId(int userId)
         {
             ChangeRequest request = null;
@@ -76,6 +78,62 @@ namespace FinancialAssistent.Repositories
             return request;
         }
 
+        public List<ChangeRequest> GetAllChanges()
+        {
+            var changeRequests = new List<ChangeRequest>();
+            try
+            {
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+                    var query = System.Configuration.ConfigurationManager.AppSettings["FetchAllChangeRequestsQuery"];
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                changeRequests.Add(new ChangeRequest
+                                {
+                                    ChangeRequestId = Convert.ToInt32(reader["ChangeRequestId"]),
+                                    UserId = Convert.ToInt32(reader["UserId"]),
+                                    NewFirstName = reader["NewFirstName"].ToString(),
+                                    NewLastName = reader["NewLastName"].ToString(),
+                                    NewEmail = reader["NewEmail"].ToString(),
+                                    NewDateOfBirth = Convert.ToDateTime(reader["NewDateOfBirth"]),
+                                    NewPhoneNumber = reader["NewPhoneNumber"].ToString(),
+                                    Status = (ChangeRequestStatus)Enum.Parse(typeof(ChangeRequestStatus), reader["Status"].ToString()),
+                                    Comment = reader["Comment"].ToString(),
+                                    RequestDate = Convert.ToDateTime(reader["RequestDate"])
+                                });
 
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return changeRequests;
+        }
+
+        public void UpdateChangeRequest(ChangeRequest changeRequest)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var query = System.Configuration.ConfigurationManager.AppSettings["UpdateChangeRequestByIdQuery"];
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Status", changeRequest.Status.ToString());
+                    command.Parameters.AddWithValue("@ChangeRequestId", changeRequest.ChangeRequestId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
