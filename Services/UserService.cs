@@ -80,5 +80,10 @@ namespace FinancialAssistent.Services
         public void RegisterUser(User user)
         {
         }
+
+        public void UpdateUser(User user)
+        {
+            _userRepository.UpdateUser(user);
+        }
     }
 }

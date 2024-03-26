@@ -119,6 +119,48 @@ namespace FinancialAssistent.Repositories
             return changeRequests;
         }
 
+        public List<ChangeRequest> GetAllChangesByUserId(int userId)
+        {
+            var changeRequests = new List<ChangeRequest>();
+            try
+            {
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+                    var query = System.Configuration.ConfigurationManager.AppSettings["FetchChangeRequestsByUser"];
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                changeRequests.Add(new ChangeRequest
+                                {
+                                    ChangeRequestId = Convert.ToInt32(reader["ChangeRequestId"]),
+                                    UserId = Convert.ToInt32(reader["UserId"]),
+                                    NewFirstName = reader["NewFirstName"].ToString(),
+                                    NewLastName = reader["NewLastName"].ToString(),
+                                    NewEmail = reader["NewEmail"].ToString(),
+                                    NewDateOfBirth = Convert.ToDateTime(reader["NewDateOfBirth"]),
+                                    NewPhoneNumber = reader["NewPhoneNumber"].ToString(),
+                                    Status = (ChangeRequestStatus)Enum.Parse(typeof(ChangeRequestStatus), reader["Status"].ToString()),
+                                    Comment = reader["Comment"].ToString(),
+                                    RequestDate = Convert.ToDateTime(reader["RequestDate"])
+                                });
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return changeRequests;
+        }
+
         public void UpdateChangeRequest(ChangeRequest changeRequest)
         {
             using (var connection = new SQLiteConnection(connectionString))

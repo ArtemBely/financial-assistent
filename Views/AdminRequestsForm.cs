@@ -10,20 +10,30 @@ namespace FinancialAssistent.Views
 
         private readonly ChangeRequestPresenter _presenter;
         private List<ChangeRequest> _changeRequests;
+        private readonly int? _userId;
 
         //Index of the sorted column with statuses
-        private const int StatusColumnIndex = 6;
+        private const int StatusColumnIndex = 7;
 
-        public AdminRequestsForm()
+        public AdminRequestsForm(int? userId = null)
         {
             InitializeComponent();
             _presenter = new ChangeRequestPresenter(this, new ChangeRequestService());
+            _userId = userId;
         }
 
 
         private void AdminRequestsForm_Load(object sender, EventArgs e)
         {
-            _presenter.LoadRequests();
+            if (_userId.HasValue)
+            {
+                 _presenter.GetRequestsByUser(_userId.Value);
+                processBtn.Text = "OK";
+            }
+            else
+            {
+                _presenter.LoadRequests();
+            }
         }
 
         public void UpdateChangeRequestsList(List<ChangeRequest> changeRequests)
@@ -98,6 +108,11 @@ namespace FinancialAssistent.Views
 
         private void Processt_Request_Click(object sender, EventArgs e)
         {
+            if (_userId.HasValue)
+            {
+                Close();
+                return;
+            }
             var requestId = GetSelectedRequestId();
             if (!requestId.HasValue)
             {
@@ -105,12 +120,9 @@ namespace FinancialAssistent.Views
             }
 
             var selectedChangeRequest = (ChangeRequest)listViewRequests.SelectedItems[0].Tag;
-            var changeRequestForm = new ChangeRequestForm(selectedChangeRequest, _changeRequests, false); 
+            var changeRequestForm = new ChangeRequestForm(selectedChangeRequest, _changeRequests, false);
+            changeRequestForm.ChangeRequestUpdated += AdminRequestsForm_Load;
             var result = changeRequestForm.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-            }
         }
 
     }

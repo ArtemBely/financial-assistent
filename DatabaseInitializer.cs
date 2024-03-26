@@ -41,7 +41,7 @@ namespace FinancialAssistent
         {
             string dbPath = "jasonbourne.db";
             string connectionString = $"Data Source={dbPath}";
-            string password = "admin";
+            string password = "john";
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password); // Хеширование пароля
 
             using (var connection = new SqliteConnection(connectionString))
@@ -53,13 +53,13 @@ namespace FinancialAssistent
                 """
         INSERT INTO User (FirstName, LastName, Email, PasswordHash, DateOfBirth, PhoneNumber, RoleId) VALUES ($firstName, $lastName, $email, $passwordHash, $dateOfBirth, $phoneNumber, $roleId);
         """;
-                command.Parameters.AddWithValue("$firstName", "Alan");
-                command.Parameters.AddWithValue("$lastName", "Smith");
-                command.Parameters.AddWithValue("$email", "admin");
+                command.Parameters.AddWithValue("$firstName", "John");
+                command.Parameters.AddWithValue("$lastName", "Simon");
+                command.Parameters.AddWithValue("$email", "simon@mail.com");
                 command.Parameters.AddWithValue("$passwordHash", passwordHash); // Используем хешированный пароль
-                command.Parameters.AddWithValue("$dateOfBirth", "1994-01-01");
+                command.Parameters.AddWithValue("$dateOfBirth", "1992-01-01");
                 command.Parameters.AddWithValue("$phoneNumber", "420987654");
-                command.Parameters.AddWithValue("roleId", 2);
+                command.Parameters.AddWithValue("roleId", 1);
 
                 command.ExecuteNonQuery();
             }

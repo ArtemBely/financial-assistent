@@ -65,6 +65,28 @@ namespace FinancialAssistent.Repositories
             return null;
         }
 
+        public void UpdateUser(User user)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var query = System.Configuration.ConfigurationManager.AppSettings["UpdateUserQuery"];
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@FirstName", user.FirstName);
+                    command.Parameters.AddWithValue("@LastName", user.LastName);
+                    command.Parameters.AddWithValue("@Email", user.Email);
+                    command.Parameters.AddWithValue("@DateOfBirth", user.DateOfBirth.ToString("yyyy-MM-dd"));
+                    command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
+                    command.Parameters.AddWithValue("@UserId", user.UserId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
     }
 
 }

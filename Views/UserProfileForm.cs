@@ -34,6 +34,15 @@ namespace FinancialAssistent.Views
             _presenter.InitializeChartData(_user.UserId, selectedMonth);
         }
 
+        private void RequestHistory_Click(object sender, EventArgs e)
+        {
+            Hide();
+            AdminRequestsForm adminRequestsForm = new AdminRequestsForm(_user.UserId);
+            adminRequestsForm.Location = Location;
+            adminRequestsForm.FormClosed += (s, args) => Show();
+            adminRequestsForm.Show();
+        }
+
         public void UpdateChart(List<DataPoint> dataPoints)
         {
             chartExpenses.Series["Series1"].Points.Clear();

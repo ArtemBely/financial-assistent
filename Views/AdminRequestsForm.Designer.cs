@@ -50,7 +50,7 @@
             listViewRequests.LabelEdit = true;
             listViewRequests.Location = new Point(35, 70);
             listViewRequests.Name = "listViewRequests";
-            listViewRequests.Size = new Size(1021, 324);
+            listViewRequests.Size = new Size(1193, 324);
             listViewRequests.TabIndex = 1;
             listViewRequests.UseCompatibleStateImageBehavior = false;
             listViewRequests.View = View.Details;
@@ -69,7 +69,7 @@
             // hintLabel
             // 
             hintLabel.AutoSize = true;
-            hintLabel.Location = new Point(639, 37);
+            hintLabel.Location = new Point(811, 37);
             hintLabel.Name = "hintLabel";
             hintLabel.Size = new Size(417, 20);
             hintLabel.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1092, 460);
+            ClientSize = new Size(1260, 460);
             Controls.Add(hintLabel);
             Controls.Add(processBtn);
             Controls.Add(listViewRequests);

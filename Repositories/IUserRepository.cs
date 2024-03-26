@@ -11,6 +11,7 @@ namespace FinancialAssistent.Repositories
     {
         void AddUser(User user);
         User GetUserByEmail(string email);
+        void UpdateUser(User user);
         bool VerifyUserCredentials(string email, string passwordHash);
     }
 

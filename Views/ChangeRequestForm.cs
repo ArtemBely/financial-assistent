@@ -10,6 +10,7 @@ namespace FinancialAssistent.Views
         private ChangeRequest _changeRequest;
         private readonly ChangeRequestPresenter _presenter;
         private List<ChangeRequest> _changeRequests;
+        public event EventHandler ChangeRequestUpdated;
         private bool _userEdition;
 
         public ChangeRequestForm(User user)
@@ -17,7 +18,7 @@ namespace FinancialAssistent.Views
             InitializeComponent();
             _userEdition = true;
             _user = user ?? throw new ArgumentNullException(nameof(user));
-            _presenter = new ChangeRequestPresenter(this, new ChangeRequestService());
+            _presenter = new ChangeRequestPresenter(this, new ChangeRequestService(), new UserService());
             rejectBtn.Visible = false;
         }
 
@@ -26,7 +27,7 @@ namespace FinancialAssistent.Views
             InitializeComponent();
             _userEdition = false;
             _changeRequest = changeRequest ?? throw new ArgumentNullException(nameof(changeRequest));
-            _presenter = new ChangeRequestPresenter(this, new ChangeRequestService());
+            _presenter = new ChangeRequestPresenter(this, new ChangeRequestService(), new UserService());
             _changeRequests = changeRequests;
             rejectBtn.Visible = true;
             statusNotificationLabel.Visible = true;
@@ -100,12 +101,26 @@ namespace FinancialAssistent.Views
             if (requestToUpdate != null)
             {
                 requestToUpdate.Status = status;
+                if(status.Equals(ChangeRequestStatus.Approved)) UpdateUserDate();
             }
             _presenter.UpdateChangeRequest(_changeRequest);
-            //TODO: implement logics
-            //_presenter.LoadRequests(); 
+            ChangeRequestUpdated?.Invoke(this, EventArgs.Empty);
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void UpdateUserDate()
+        {
+            User userToUpdate = new User
+            {
+                FirstName = _changeRequest.NewFirstName,
+                LastName = _changeRequest.NewLastName,
+                Email = _changeRequest.NewEmail,
+                DateOfBirth = _changeRequest.NewDateOfBirth,
+                PhoneNumber = _changeRequest.NewPhoneNumber,
+                UserId = _changeRequest.UserId
+            };
+            _presenter.UpdateUserBasedOnChangeRequest(userToUpdate);
         }
 
         private void SendRequest()

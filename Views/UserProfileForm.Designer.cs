@@ -45,6 +45,7 @@ namespace FinancialAssistent.Views
             chooseMonthBtn = new Button();
             newTransaction = new Button();
             aiHelper = new Button();
+            requestHistoryBtn = new Button();
             monthComboBox = new ComboBox();
             chartExpenses = new Chart();
             ChartArea chartArea1 = new ChartArea();
@@ -128,6 +129,16 @@ namespace FinancialAssistent.Views
             aiHelper.Text = "AI Helper";
             aiHelper.UseVisualStyleBackColor = true;
             aiHelper.Click += ButtonChoose_Click;
+            //
+            // requestHistory
+            //
+            requestHistoryBtn.Location = new Point(30, 590);
+            requestHistoryBtn.Name = "requestHistory";
+            requestHistoryBtn.Size = new Size(152, 29);
+            requestHistoryBtn.TabIndex = 4;
+            requestHistoryBtn.Text = "Requests History";
+            requestHistoryBtn.UseVisualStyleBackColor = true;
+            requestHistoryBtn.Click += RequestHistory_Click;
             // 
             // chartExpenses
             // 
@@ -232,6 +243,7 @@ namespace FinancialAssistent.Views
             Controls.Add(chooseMonthBtn);
             Controls.Add(newTransaction);
             Controls.Add(aiHelper);
+            Controls.Add(requestHistoryBtn);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "UserProfileForm";
@@ -249,6 +261,7 @@ namespace FinancialAssistent.Views
         private Panel panelHeader;
         private ComboBox monthComboBox;
         private Button chooseMonthBtn;
+        private Button requestHistoryBtn;
         private Button newTransaction;
         private Button aiHelper;
         private Label labelEmail;

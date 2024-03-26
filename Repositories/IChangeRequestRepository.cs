@@ -1,4 +1,5 @@
 ﻿using FinancialAssistent.Models;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace FinancialAssistent.Repositories
         List<ChangeRequest> GetAllChanges();
         void AddChangeRequest(ChangeRequest changeRequest);
         ChangeRequest FindPendingRequestByUserId(int userId);
+        List<ChangeRequest> GetAllChangesByUserId(int userId);
         void UpdateChangeRequest(ChangeRequest changeRequest);
     }
 }

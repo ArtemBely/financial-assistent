@@ -12,14 +12,16 @@ namespace FinancialAssistent.Presenters
     public class ChangeRequestPresenter
     {
         private readonly IChangeRequestService _changeRequestService;
+        private readonly IUserService _userService;
         private AdminRequestsForm adminRequestsForm;
         private ChangeRequestForm changeRequestForm;
 
 
-        public ChangeRequestPresenter(ChangeRequestForm changeRequestForm, IChangeRequestService changeRequestService)
+        public ChangeRequestPresenter(ChangeRequestForm changeRequestForm, IChangeRequestService changeRequestService, IUserService userService)
         {
             this.changeRequestForm = changeRequestForm;
             _changeRequestService = changeRequestService;
+            _userService = userService;
         }
 
         public ChangeRequestPresenter(AdminRequestsForm adminRequestsForm, IChangeRequestService changeRequestService)
@@ -38,10 +40,22 @@ namespace FinancialAssistent.Presenters
             return _changeRequestService.FindPendingRequestByUserId(userId);
         }
 
+        public List<ChangeRequest> GetRequestsByUser(int userId)
+        {
+            var requests = _changeRequestService.GetAllChangesByUserId(userId);
+            adminRequestsForm.UpdateChangeRequestsList(requests);
+            return requests;
+        }
+
         public void LoadRequests()
         {
             var requests = _changeRequestService.GetAllChanges();
             adminRequestsForm.UpdateChangeRequestsList(requests);
+        }
+
+        public void UpdateUserBasedOnChangeRequest(User user)
+        {
+            _userService.UpdateUser(user);
         }
 
         public void UpdateChangeRequest(ChangeRequest changeRequest)

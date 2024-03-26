@@ -34,6 +34,11 @@ namespace FinancialAssistent.Services
            return repository.GetAllChanges();
         }
 
+        public List<ChangeRequest> GetAllChangesByUserId(int userId)
+        {
+            return repository.GetAllChangesByUserId(userId);
+        }
+
         public void UpdateChangeRequest(ChangeRequest changeRequest)
         {
             repository.UpdateChangeRequest(changeRequest);
