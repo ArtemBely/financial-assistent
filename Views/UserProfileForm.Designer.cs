@@ -128,7 +128,7 @@ namespace FinancialAssistent.Views
             aiHelper.TabIndex = 4;
             aiHelper.Text = "AI Helper";
             aiHelper.UseVisualStyleBackColor = true;
-            aiHelper.Click += ButtonChoose_Click;
+            aiHelper.Click += AIHelperChoose_Click;
             //
             // requestHistory
             //

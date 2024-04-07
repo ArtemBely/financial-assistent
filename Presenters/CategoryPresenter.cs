@@ -12,6 +12,7 @@ namespace FinancialAssistent.Presenters
         private ICategoryService _categoryService;
         private EditTransactionForm editTransactionForm;
         private CategoryService categoryService;
+        private AIHelperForm aIHelperForm;
 
         public CategoryPresenter(TransactionForm transactionForm, CategoryService categoryService)
         {
@@ -23,6 +24,12 @@ namespace FinancialAssistent.Presenters
         {
             this.editTransactionForm = editTransactionForm;
             _categoryService = categoryService;
+        }
+
+        public CategoryPresenter(AIHelperForm aIHelperForm, CategoryService categoryService)
+        {
+            this.aIHelperForm = aIHelperForm;
+            this.categoryService = categoryService;
         }
 
         public List<Category> LoadCategories()

@@ -74,6 +74,15 @@ namespace FinancialAssistent.Views
             transactionForm.Show();
         }
 
+        private void AIHelperChoose_Click(object sender, EventArgs e)
+        {
+            Hide();
+            AIHelperForm aIHelperForm = new AIHelperForm(_user.UserId);
+            aIHelperForm.Location = Location;
+            aIHelperForm.FormClosed += (s, args) => Show();
+            aIHelperForm.Show();
+        }
+
         private void EditProfileBtn_Click(object sender, EventArgs e)
         {
             ChangeRequestForm changeRequestForm = new ChangeRequestForm(_user);
