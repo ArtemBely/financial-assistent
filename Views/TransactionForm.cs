@@ -10,6 +10,7 @@ namespace FinancialAssistent.Views
         private readonly int _userId;
         private readonly TransactionPresenter _presenter;
         private CategoryPresenter _categoryPresenter;
+        private AIPresenter _aiPresenter;
         private bool _categoriesLoaded = false;
         private List<Category> allCategories;
         private List<Transaction> allTransactions;
@@ -22,6 +23,8 @@ namespace FinancialAssistent.Views
             ITransactionService transactionService = new TransactionService();
             _categoryPresenter = new CategoryPresenter(this, new CategoryService());
             _presenter = new TransactionPresenter(this, new TransactionService());
+            _aiPresenter = new AIPresenter();
+            //_aiPresenter.TrainModel(_userId);
         }
 
         private void TransactionForm_Load(object sender, EventArgs e)
@@ -32,6 +35,11 @@ namespace FinancialAssistent.Views
                 allCategories = _categoryPresenter.LoadCategories();
                 _categoriesLoaded = true;
             }
+        }
+
+        private void TrainModelButton_Click(object sender, EventArgs e)
+        {
+            _aiPresenter.TrainOrIncrementModel(_userId);
         }
 
         private void Edit_Transaction(object sender, EventArgs e)
@@ -46,7 +54,11 @@ namespace FinancialAssistent.Views
             if (transactionToEdit != null)
             {
                 EditTransactionForm editForm = new EditTransactionForm(transactionToEdit, allCategories);
-                editForm.TransactionUpdated += EditForm_TransactionUpdated;
+                editForm.TransactionUpdated += (sender, e) =>
+                {
+                    EditForm_TransactionUpdated(sender, e);
+                    _aiPresenter.TrainOrIncrementModel(_userId);
+                };
                 editForm.ShowDialog();
             }
             else
@@ -100,11 +112,12 @@ namespace FinancialAssistent.Views
                     {
                         UserId = _userId,
                         Date = dateTimePicker1.Value,
-                        Amount = amount,
+                        Amount = (float)amount,
                         CategoryId = category.CategoryId
                     };
 
                     _presenter.SaveTransaction(transaction);
+                    _aiPresenter.Predict(transaction);
                     _presenter.LoadTransactions(_userId);
                 }
             }

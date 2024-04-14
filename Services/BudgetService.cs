@@ -25,5 +25,20 @@ namespace FinancialAssistent.Services
         {
             repository.AddBudget(budget);
         }
+
+        public List<Budget> FindAllByUser(int userId)
+        {
+            return repository.FindAllByUser(userId);
+        }
+
+        public Budget FindByUserAndCategory(int userId, int categoryId)
+        {
+            return repository.FindByUserAndCategory(userId, categoryId);   
+        }
+
+        public void UpdateBudget(Budget budget)
+        {
+            repository.UpdateBudget(budget);
+        }
     }
 }

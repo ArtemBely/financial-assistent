@@ -50,6 +50,7 @@
             allCategoryListView = new ListView();
             editCategoryBtn = new Button();
             deleteCategoryBtn = new Button();
+            AITrainingBtn = new Button();
             SuspendLayout();
             // 
             // addTransactionLabel
@@ -254,11 +255,22 @@
             deleteCategoryBtn.UseVisualStyleBackColor = true;
             deleteCategoryBtn.Click += Delete_Category;
             // 
+            // AITrainingBtn
+            // 
+            AITrainingBtn.Location = new Point(537, 443);
+            AITrainingBtn.Name = "AITrainingBtn";
+            AITrainingBtn.Size = new Size(94, 29);
+            AITrainingBtn.TabIndex = 22;
+            AITrainingBtn.Text = "AI Training";
+            AITrainingBtn.UseVisualStyleBackColor = true;
+            AITrainingBtn.Click += TrainModelButton_Click;
+            // 
             // TransactionForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(990, 681);
+            Controls.Add(AITrainingBtn);
             Controls.Add(deleteCategoryBtn);
             Controls.Add(editCategoryBtn);
             Controls.Add(editBtn);
@@ -312,5 +324,6 @@
         private ListView allCategoryListView;
         private Button editCategoryBtn;
         private Button deleteCategoryBtn;
+        private Button AITrainingBtn;
     }
 }

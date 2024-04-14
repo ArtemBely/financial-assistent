@@ -12,7 +12,9 @@ namespace FinancialAssistent.Services
     {
         List<DataPoint> GetTransactionData(int userId, string selectedMonth = null);
 
-        List<Transaction> GetTransactionsForUser(int userId);
+        List<Transaction> GetTransactionsForUser(int userId); 
+
+        List<Transaction> GetRecentTransactionsForUser(int userId);
 
         void AddTransaction(Transaction transaction);
 

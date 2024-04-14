@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aaOVIsZ6dVe1O3EdzgNwOejwkShGUU3i79WX4IWWaHR/ochnULdA8+LeqBQvg41XZOSYovH1KvM9stawiRMmIQ==",
+  "dgSpecHash": "1k98PaGtXAB9WaVvVd4cwuOHRZcXfd9V2HXQ2FAEiwpzk/XOKb34r9m3nBQceBKeANXhKq7MRkFI6SISv3ufvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\belysheva\\Desktop\\FinancialAssistent\\FinancialAssistent.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,7 @@
     "C:\\Users\\belysheva\\.nuget\\packages\\microsoft.ml\\3.0.1\\microsoft.ml.3.0.1.nupkg.sha512",
     "C:\\Users\\belysheva\\.nuget\\packages\\microsoft.ml.cpumath\\3.0.1\\microsoft.ml.cpumath.3.0.1.nupkg.sha512",
     "C:\\Users\\belysheva\\.nuget\\packages\\microsoft.ml.dataview\\3.0.1\\microsoft.ml.dataview.3.0.1.nupkg.sha512",
+    "C:\\Users\\belysheva\\.nuget\\packages\\microsoft.ml.fasttree\\3.0.1\\microsoft.ml.fasttree.3.0.1.nupkg.sha512",
     "C:\\Users\\belysheva\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\belysheva\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\belysheva\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

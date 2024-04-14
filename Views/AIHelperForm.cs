@@ -41,13 +41,22 @@ namespace FinancialAssistent.Views
                 Limit = limit
             };
 
-            try {
-                _budgetPresenter.SaveBudget(newBudget);
-                MessageBox.Show("Budget limit was successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } catch (Exception ex)
+            //try {
+            //    _budgetPresenter.SaveBudget(newBudget);
+            //    MessageBox.Show("Budget limit was successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //} catch (Exception ex)
+            //{
+            //    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            try
+            {
+                _budgetPresenter.SaveOrUpdateBudget(newBudget);
+                MessageBox.Show("Budget limit was successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //}
         }
 
         private void AIHelperForm_Load(object sender, EventArgs e)

@@ -10,6 +10,7 @@ namespace FinancialAssistent.Repositories
     internal interface ITransactionRepository
     {
         public List<Transaction> FetchTransactions(int userId);
+        public List<Transaction> FetchTransactionsForLastMonth(int userId);
         void AddTransaction(Transaction transaction);
         void RemoveTransaction(int transactionId);
         void UpdateTransaction(Transaction transaction);

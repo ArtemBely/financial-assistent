@@ -25,5 +25,19 @@ namespace FinancialAssistent.Presenters
         {
             _budgetService.AddBudget(budget);
         }
+
+        public void SaveOrUpdateBudget(Budget budget)
+        {
+            var existingBudget = _budgetService.FindByUserAndCategory(budget.UserId, budget.CategoryId);
+            if (existingBudget != null)
+            {
+                existingBudget.Limit = budget.Limit;
+                _budgetService.UpdateBudget(existingBudget);
+            }
+            else
+            {
+                _budgetService.AddBudget(budget);
+            }
+        }
     }
 }

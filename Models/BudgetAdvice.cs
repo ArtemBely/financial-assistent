@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace FinancialAssistent.Models
 {
-    public class Transaction
+    public class BudgetAdvice
     {
-        public int TransactionId { get; set; }
-        public int UserId { get; set; }
-        public DateTime Date { get; set; }
-        public float Amount { get; set; }
         public int CategoryId { get; set; }
+        public decimal SuggestedLimit { get; set; }
     }
+
 }

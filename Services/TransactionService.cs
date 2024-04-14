@@ -89,6 +89,11 @@ namespace FinancialAssistent.Services
         {
             repository.UpdateTransaction(transaction);
         }
+
+        public List<Transaction> GetRecentTransactionsForUser(int userId)
+        {
+            return repository.FetchTransactionsForLastMonth(userId);
+        }
     }
 
 

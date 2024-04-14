@@ -108,3 +108,8 @@ C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\Financial
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.Views.ChangeRequestForm.resources
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.Views.AdminDashboardForm.resources
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.Views.AdminRequestsForm.resources
+C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\Microsoft.ML.FastTree.dll
+C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\runtimes\linux-x64\native\libFastTreeNative.so
+C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\runtimes\osx-x64\native\libFastTreeNative.dylib
+C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\runtimes\win-x64\native\FastTreeNative.dll
+C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\runtimes\win-x86\native\FastTreeNative.dll

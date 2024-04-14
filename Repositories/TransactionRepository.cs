@@ -79,7 +79,7 @@ namespace FinancialAssistent.Repositories
                                     TransactionId = Convert.ToInt32(reader["TransactionId"]),
                                     UserId = Convert.ToInt32(reader["UserId"]),
                                     Date = Convert.ToDateTime(reader["Date"]),
-                                    Amount = Convert.ToDecimal(reader["Amount"]),
+                                    Amount = (float)Convert.ToDecimal(reader["Amount"]),
                                     CategoryId = Convert.ToInt32(reader["CategoryId"])
                                 });
                             }
@@ -108,6 +108,42 @@ namespace FinancialAssistent.Repositories
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public List<Transaction> FetchTransactionsForLastMonth(int userId)
+        {
+            var transactions = new List<Transaction>();
+            try
+            {
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+                    var query = System.Configuration.ConfigurationManager.AppSettings["FetchTransactionsByUserPerMonthQuery"];
+                    using (var command = new SQLiteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                transactions.Add(new Transaction
+                                {
+                                    TransactionId = Convert.ToInt32(reader["TransactionId"]),
+                                    UserId = Convert.ToInt32(reader["UserId"]),
+                                    Date = Convert.ToDateTime(reader["Date"]),
+                                    Amount = (float)Convert.ToDecimal(reader["Amount"]),
+                                    CategoryId = Convert.ToInt32(reader["CategoryId"])
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return transactions;
         }
 
     }

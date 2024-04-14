@@ -72,7 +72,7 @@ namespace FinancialAssistent.Views
             try
             {
                 _transactionToEdit.Date = dateTimePicker2.Value;
-                _transactionToEdit.Amount = decimal.Parse(amountTextbox.Text);
+                _transactionToEdit.Amount = (float)decimal.Parse(amountTextbox.Text);
                 _transactionToEdit.CategoryId = ((dynamic)categoryCombobox.SelectedItem).Value;
                 _presenter.UpdateTransaction(_transactionToEdit);
                 TransactionUpdated?.Invoke(this, EventArgs.Empty);
