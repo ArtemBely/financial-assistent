@@ -39,8 +39,17 @@ namespace FinancialAssistent.Views
 
         private void TrainModelButton_Click(object sender, EventArgs e)
         {
-            _aiPresenter.TrainOrIncrementModel(_userId);
+            try
+            {
+                _aiPresenter.TrainOrIncrementModel(_userId);
+                MessageBox.Show("The AI model has been successfully trained.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Mistake in AI training: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void Edit_Transaction(object sender, EventArgs e)
         {

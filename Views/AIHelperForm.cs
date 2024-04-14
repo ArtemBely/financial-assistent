@@ -1,6 +1,7 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Presenters;
 using FinancialAssistent.Services;
+using System.Text;
 
 namespace FinancialAssistent.Views
 {
@@ -10,6 +11,7 @@ namespace FinancialAssistent.Views
         private readonly ICategoryService _categoryService;
         private readonly int _userId;
         private BudgetPresenter _budgetPresenter;
+        private AIPresenter _aiPresenter;
         private List<Category> _categories;
 
         public AIHelperForm(int userId)
@@ -17,6 +19,7 @@ namespace FinancialAssistent.Views
             InitializeComponent();
             _categoryService = new CategoryService();
             _budgetPresenter = new BudgetPresenter(this, new BudgetService());
+            _aiPresenter = new AIPresenter();
             _userId = userId;
         }
 
@@ -58,6 +61,25 @@ namespace FinancialAssistent.Views
             }
             //}
         }
+
+        private void BtnUpdateBudgetAdvices_Click(object sender, EventArgs e)
+        {
+            var advices = _aiPresenter.GetBudgetAdvices(_userId);
+            DisplayAdvices(advices);
+        }
+
+        private void DisplayAdvices(List<BudgetAdvice> advices)
+        {
+            var message = new StringBuilder();
+
+            foreach (var advice in advices)
+            {
+                message.AppendLine($"Category {advice.CategoryId}: recommended limit {advice.SuggestedLimit:C}");
+            }
+
+            MessageBox.Show(message.ToString(), "Advices: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
 
         private void AIHelperForm_Load(object sender, EventArgs e)
         {

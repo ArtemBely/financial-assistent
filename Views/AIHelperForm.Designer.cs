@@ -32,9 +32,9 @@
             acceptLimitBtn = new Button();
             limitTextBox = new TextBox();
             recommentationLbl = new Label();
-            descriptionLbl = new Label();
             catagoryLbl = new Label();
             limitLbl = new Label();
+            showAdvicesBtn = new Button();
             SuspendLayout();
             // 
             // categoryCombobox
@@ -58,7 +58,7 @@
             // limitTextBox
             // 
             limitTextBox.Location = new Point(206, 134);
-            limitTextBox.Name = "textBox1";
+            limitTextBox.Name = "limitTextBox";
             limitTextBox.Size = new Size(151, 27);
             limitTextBox.TabIndex = 2;
             // 
@@ -70,15 +70,6 @@
             recommentationLbl.Size = new Size(371, 20);
             recommentationLbl.TabIndex = 3;
             recommentationLbl.Text = "Define limits by category. Recommendation character*";
-            // 
-            // descriptionLbl
-            // 
-            descriptionLbl.AutoSize = true;
-            descriptionLbl.Location = new Point(61, 266);
-            descriptionLbl.Name = "descriptionLbl";
-            descriptionLbl.Size = new Size(149, 20);
-            descriptionLbl.TabIndex = 4;
-            descriptionLbl.Text = "Instruction for using...";
             // 
             // catagoryLbl
             // 
@@ -98,14 +89,24 @@
             limitLbl.TabIndex = 6;
             limitLbl.Text = "Define limit";
             // 
+            // showAdvicesBtn
+            // 
+            showAdvicesBtn.Location = new Point(61, 253);
+            showAdvicesBtn.Name = "showAdvicesBtn";
+            showAdvicesBtn.Size = new Size(187, 29);
+            showAdvicesBtn.TabIndex = 7;
+            showAdvicesBtn.Text = "Show AI advices";
+            showAdvicesBtn.UseVisualStyleBackColor = true;
+            showAdvicesBtn.Click += BtnUpdateBudgetAdvices_Click;
+            // 
             // AIHelperForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(showAdvicesBtn);
             Controls.Add(limitLbl);
             Controls.Add(catagoryLbl);
-            Controls.Add(descriptionLbl);
             Controls.Add(recommentationLbl);
             Controls.Add(limitTextBox);
             Controls.Add(acceptLimitBtn);
@@ -123,8 +124,8 @@
         private Button acceptLimitBtn;
         private TextBox limitTextBox;
         private Label recommentationLbl;
-        private Label descriptionLbl;
         private Label catagoryLbl;
         private Label limitLbl;
+        private Button showAdvicesBtn;
     }
 }
