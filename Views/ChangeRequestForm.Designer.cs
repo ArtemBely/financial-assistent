@@ -171,8 +171,10 @@
             Controls.Add(textBoxRequestLastName);
             Controls.Add(textBoxRequestName);
             Controls.Add(nameLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "ChangeRequestForm";
-            Text = "ChangeRequestForm";
+            Text = "Change Request";
             Load += ChangeRequestForm_Load;
             ResumeLayout(false);
             PerformLayout();

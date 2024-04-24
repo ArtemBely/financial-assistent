@@ -38,9 +38,10 @@ namespace FinancialAssistent.Views
 
         public void UpdateChangeRequestsList(List<ChangeRequest> changeRequests)
         {
+            listViewRequests.BeginUpdate();
+
             _changeRequests = changeRequests;
             listViewRequests.Items.Clear();
-
             if (listViewRequests.Columns.Count == 0)
             {
                 listViewRequests.Columns.Add("ChangeRequestId", -2, HorizontalAlignment.Left);
@@ -54,7 +55,6 @@ namespace FinancialAssistent.Views
                 listViewRequests.Columns.Add("Comment", -2, HorizontalAlignment.Left);
                 listViewRequests.Columns.Add("Request Date", -2, HorizontalAlignment.Left);
             }
-
             foreach (var changeRequest in changeRequests)
             {
                 var item = new ListViewItem($"{changeRequest.ChangeRequestId}")
@@ -75,6 +75,8 @@ namespace FinancialAssistent.Views
 
             listViewRequests.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listViewRequests.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            listViewRequests.EndUpdate();
         }
 
         private void listViewRequests_ColumnClick(object sender, ColumnClickEventArgs e)

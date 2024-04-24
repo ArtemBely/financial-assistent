@@ -83,7 +83,6 @@ namespace FinancialAssistent.Views
         }
 
 
-
         private void RejectBtn_Click(object sender, EventArgs e)
         {
             SetStatus(ChangeRequestStatus.Rejected);
@@ -95,19 +94,37 @@ namespace FinancialAssistent.Views
             else SetStatus(ChangeRequestStatus.Approved);
         }
 
+        //private void SetStatus(ChangeRequestStatus status)
+        //{
+        //    var requestToUpdate = _changeRequests.FirstOrDefault(cr => cr.ChangeRequestId == _changeRequest.ChangeRequestId);
+        //    if (requestToUpdate != null)
+        //    {
+        //        requestToUpdate.Status = status;
+        //        if(status.Equals(ChangeRequestStatus.Approved)) UpdateUserDate();
+        //    }
+        //    _presenter.UpdateChangeRequest(_changeRequest);
+        //    ChangeRequestUpdated?.Invoke(this, EventArgs.Empty);
+        //    this.DialogResult = DialogResult.OK;
+        //    this.Close();
+        //}
         private void SetStatus(ChangeRequestStatus status)
         {
             var requestToUpdate = _changeRequests.FirstOrDefault(cr => cr.ChangeRequestId == _changeRequest.ChangeRequestId);
-            if (requestToUpdate != null)
+            if (requestToUpdate != null && requestToUpdate.Status != status)
             {
                 requestToUpdate.Status = status;
-                if(status.Equals(ChangeRequestStatus.Approved)) UpdateUserDate();
+                if (status.Equals(ChangeRequestStatus.Approved))
+                {
+                    UpdateUserDate();
+                }
+                _presenter.UpdateChangeRequest(_changeRequest);
+                ChangeRequestUpdated?.Invoke(this, EventArgs.Empty);
             }
-            _presenter.UpdateChangeRequest(_changeRequest);
-            ChangeRequestUpdated?.Invoke(this, EventArgs.Empty);
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
 
         private void UpdateUserDate()
         {

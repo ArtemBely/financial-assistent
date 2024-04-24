@@ -24,7 +24,6 @@ namespace FinancialAssistent.Views
             _categoryPresenter = new CategoryPresenter(this, new CategoryService());
             _presenter = new TransactionPresenter(this, new TransactionService());
             _aiPresenter = new AIPresenter();
-            //_aiPresenter.TrainModel(_userId);
         }
 
         private void TransactionForm_Load(object sender, EventArgs e)

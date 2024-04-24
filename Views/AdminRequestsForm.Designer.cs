@@ -84,8 +84,10 @@
             Controls.Add(processBtn);
             Controls.Add(listViewRequests);
             Controls.Add(requestLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AdminRequestsForm";
-            Text = "AdminRequestsForm";
+            Text = "Admin Requests";
             Load += AdminRequestsForm_Load;
             ResumeLayout(false);
             PerformLayout();

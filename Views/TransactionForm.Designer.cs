@@ -257,12 +257,13 @@
             // 
             // AITrainingBtn
             // 
-            AITrainingBtn.Location = new Point(537, 443);
+            AITrainingBtn.BackColor = Color.WhiteSmoke;
+            AITrainingBtn.Location = new Point(325, 598);
             AITrainingBtn.Name = "AITrainingBtn";
-            AITrainingBtn.Size = new Size(94, 29);
+            AITrainingBtn.Size = new Size(206, 29);
             AITrainingBtn.TabIndex = 22;
             AITrainingBtn.Text = "AI Training";
-            AITrainingBtn.UseVisualStyleBackColor = true;
+            AITrainingBtn.UseVisualStyleBackColor = false;
             AITrainingBtn.Click += TrainModelButton_Click;
             // 
             // TransactionForm
@@ -292,6 +293,8 @@
             Controls.Add(amountLabel);
             Controls.Add(amountBtn);
             Controls.Add(addTransactionLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "TransactionForm";
             Text = "Transactions";
             Load += TransactionForm_Load;

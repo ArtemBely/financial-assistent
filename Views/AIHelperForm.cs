@@ -20,6 +20,7 @@ namespace FinancialAssistent.Views
             _categoryService = new CategoryService();
             _budgetPresenter = new BudgetPresenter(this, new BudgetService());
             _aiPresenter = new AIPresenter();
+            _categories = _categoryService.GetCategories();
             _userId = userId;
         }
 
@@ -44,12 +45,6 @@ namespace FinancialAssistent.Views
                 Limit = limit
             };
 
-            //try {
-            //    _budgetPresenter.SaveBudget(newBudget);
-            //    MessageBox.Show("Budget limit was successfully added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //} catch (Exception ex)
-            //{
-            //    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             try
             {
                 _budgetPresenter.SaveOrUpdateBudget(newBudget);
@@ -59,31 +54,31 @@ namespace FinancialAssistent.Views
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //}
         }
 
         private void BtnUpdateBudgetAdvices_Click(object sender, EventArgs e)
         {
             var advices = _aiPresenter.GetBudgetAdvices(_userId);
-            DisplayAdvices(advices);
+            if (advices != null)
+            {
+                DisplayAdvices(advices);
+            }
         }
 
         private void DisplayAdvices(List<BudgetAdvice> advices)
         {
             var message = new StringBuilder();
-
             foreach (var advice in advices)
             {
-                message.AppendLine($"Category {advice.CategoryId}: recommended limit {advice.SuggestedLimit:C}");
+                var categoryName = _categories.FirstOrDefault(c => c.CategoryId == advice.CategoryId)?.CategoryName ?? "Unknown Category";
+                message.AppendLine($"{categoryName}: recommended actual limit {advice.SuggestedLimit:C}");
             }
-
             MessageBox.Show(message.ToString(), "Advices: ", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
         private void AIHelperForm_Load(object sender, EventArgs e)
         {
-            _categories = _categoryService.GetCategories();
             categoryCombobox.DataSource = _categories;
             categoryCombobox.DisplayMember = "CategoryName";
             categoryCombobox.ValueMember = "CategoryId";

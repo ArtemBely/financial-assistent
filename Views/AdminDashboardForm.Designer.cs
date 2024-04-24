@@ -73,6 +73,8 @@
             Controls.Add(usersListview);
             Controls.Add(usersLabel);
             Controls.Add(requestBtn);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AdminDashboardForm";
             Text = "Admin Dashboard";
             Load += AdminDashboardForm_Load;

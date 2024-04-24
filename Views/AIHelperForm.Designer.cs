@@ -67,9 +67,9 @@
             recommentationLbl.AutoSize = true;
             recommentationLbl.Location = new Point(61, 44);
             recommentationLbl.Name = "recommentationLbl";
-            recommentationLbl.Size = new Size(371, 20);
+            recommentationLbl.Size = new Size(427, 20);
             recommentationLbl.TabIndex = 3;
-            recommentationLbl.Text = "Define limits by category. Recommendation character*";
+            recommentationLbl.Text = "Define month's limits by category. Recommendation character*";
             // 
             // catagoryLbl
             // 
@@ -91,12 +91,13 @@
             // 
             // showAdvicesBtn
             // 
+            showAdvicesBtn.BackColor = SystemColors.ActiveBorder;
             showAdvicesBtn.Location = new Point(61, 253);
             showAdvicesBtn.Name = "showAdvicesBtn";
             showAdvicesBtn.Size = new Size(187, 29);
             showAdvicesBtn.TabIndex = 7;
             showAdvicesBtn.Text = "Show AI advices";
-            showAdvicesBtn.UseVisualStyleBackColor = true;
+            showAdvicesBtn.UseVisualStyleBackColor = false;
             showAdvicesBtn.Click += BtnUpdateBudgetAdvices_Click;
             // 
             // AIHelperForm
@@ -111,8 +112,10 @@
             Controls.Add(limitTextBox);
             Controls.Add(acceptLimitBtn);
             Controls.Add(categoryCombobox);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AIHelperForm";
-            Text = "AIHelperForm";
+            Text = "AI Helper";
             Load += AIHelperForm_Load;
             ResumeLayout(false);
             PerformLayout();

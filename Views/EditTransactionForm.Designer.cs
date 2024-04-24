@@ -98,6 +98,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(431, 358);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Controls.Add(categoryNameTextbox);
             Controls.Add(cancelBtn);
             Controls.Add(saveBtn);

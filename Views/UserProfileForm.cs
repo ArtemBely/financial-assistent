@@ -9,6 +9,18 @@ namespace FinancialAssistent.Views
     {
         private readonly User _user;
         private readonly TransactionPresenter _presenter;
+        List<Color> colors = new List<Color>
+        {
+            Color.FromArgb(128, 128, 192),
+            Color.FromArgb(128, 158, 128),
+            Color.FromArgb(184, 134, 11),
+            Color.FromArgb(205, 133, 63),
+            Color.FromArgb(135, 206, 235),
+            Color.FromArgb(160, 82, 45),
+            Color.FromArgb(119, 136, 153),
+            Color.FromArgb(147, 112, 219)
+        };
+
 
         public UserProfileForm(User user)
         {
@@ -46,13 +58,17 @@ namespace FinancialAssistent.Views
         public void UpdateChart(List<DataPoint> dataPoints)
         {
             chartExpenses.Series["Series1"].Points.Clear();
-            Random random = new Random();
+            int colorIndex = 0;
+
             foreach (var point in dataPoints)
             {
                 chartExpenses.Series["Series1"].Points.Add(point);
-                Color randomColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-                point.Color = randomColor;
+                Color pointColor = colors[colorIndex % colors.Count];
+                point.Color = pointColor;
+
+                colorIndex++;
             }
+
             chartExpenses.Series["Series1"].IsValueShownAsLabel = true;
             chartExpenses.Series["Series1"].LabelForeColor = Color.Black;
             chartExpenses.Series["Series1"].LabelFormat = "{0:C}";
