@@ -12,7 +12,15 @@ namespace FinancialAssistent
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+
+            ///<summary>
+            /// Simulate first DB init 
+            ///</summary>
             //DatabaseInitializer.InitializeDatabase();
+
+            ///<summary>
+            /// Simulate adding new user with custom credentials. Add it if nedd to test new user.
+            ///</summary>
             //DatabaseInitializer.AddTestUser();
 
             ApplicationConfiguration.Initialize();

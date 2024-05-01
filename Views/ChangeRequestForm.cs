@@ -94,19 +94,6 @@ namespace FinancialAssistent.Views
             else SetStatus(ChangeRequestStatus.Approved);
         }
 
-        //private void SetStatus(ChangeRequestStatus status)
-        //{
-        //    var requestToUpdate = _changeRequests.FirstOrDefault(cr => cr.ChangeRequestId == _changeRequest.ChangeRequestId);
-        //    if (requestToUpdate != null)
-        //    {
-        //        requestToUpdate.Status = status;
-        //        if(status.Equals(ChangeRequestStatus.Approved)) UpdateUserDate();
-        //    }
-        //    _presenter.UpdateChangeRequest(_changeRequest);
-        //    ChangeRequestUpdated?.Invoke(this, EventArgs.Empty);
-        //    this.DialogResult = DialogResult.OK;
-        //    this.Close();
-        //}
         private void SetStatus(ChangeRequestStatus status)
         {
             var requestToUpdate = _changeRequests.FirstOrDefault(cr => cr.ChangeRequestId == _changeRequest.ChangeRequestId);
@@ -164,7 +151,7 @@ namespace FinancialAssistent.Views
                 };
 
                 _presenter.SaveChangeRequest(changeRequest);
-                MessageBox.Show("Saved.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Change Request was sent. Please, wait until the responsible authority processes the application.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

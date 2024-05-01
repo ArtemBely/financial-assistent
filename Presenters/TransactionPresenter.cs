@@ -1,12 +1,6 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Services;
 using FinancialAssistent.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FinancialAssistent.Presenters
 {
@@ -14,7 +8,7 @@ namespace FinancialAssistent.Presenters
     {
         private readonly ITransactionService _transactionService;
         private readonly IUserProfileView _view;
-        private TransactionForm transactionForm;
+        private TransactionForm _transactionForm;
 
         public TransactionPresenter(IUserProfileView view, ITransactionService transactionService)
         {
@@ -24,7 +18,7 @@ namespace FinancialAssistent.Presenters
 
         public TransactionPresenter(TransactionForm transactionForm, ITransactionService transactionService)
         {
-            this.transactionForm = transactionForm;
+            _transactionForm = transactionForm;
             _transactionService = transactionService;
         }
 
@@ -54,7 +48,7 @@ namespace FinancialAssistent.Presenters
             {
                 Console.WriteLine($"ID: {transaction.TransactionId}, UserID: {transaction.UserId}, Date: {transaction.Date}, Amount: {transaction.Amount}, CategoryID: {transaction.CategoryId}");
             }
-            transactionForm.UpdateTransactionsList(transactions);
+            _transactionForm.UpdateTransactionsList(transactions);
         }
 
         public void SaveTransaction(Transaction transaction)
@@ -71,9 +65,5 @@ namespace FinancialAssistent.Presenters
         {
             _transactionService.UpdateTransaction(transaction);
         }
-
-
     }
-
-
 }

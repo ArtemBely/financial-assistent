@@ -1,32 +1,24 @@
 ﻿using FinancialAssistent.Models;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace FinancialAssistent.Repositories
 {
     internal class CategoryRepository : ICategoryRepository
     {
 
-        private string connectionString;
+        private string _connectionString;
 
         public CategoryRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            _connectionString = connectionString;
         }
 
         public bool AddCategory(string category)
         {
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
 
@@ -55,7 +47,7 @@ namespace FinancialAssistent.Repositories
             var categories = new List<Category>();
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
                     var query = System.Configuration.ConfigurationManager.AppSettings["FetchAllCategoriesQuery"];
@@ -69,7 +61,7 @@ namespace FinancialAssistent.Repositories
                                 {
                                     CategoryId = Convert.ToInt32(reader["CategoryId"]),
                                     CategoryName = Convert.ToString(reader["CategoryName"])
-                            });
+                                });
                             }
                         }
                     }
@@ -84,7 +76,7 @@ namespace FinancialAssistent.Repositories
 
         public void RemoveCategory(string categoryName)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
                 var query = System.Configuration.ConfigurationManager.AppSettings["DeleteOneCategoryQuery"];
@@ -100,7 +92,7 @@ namespace FinancialAssistent.Repositories
 
         public void UpdateCategory(Category category)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 

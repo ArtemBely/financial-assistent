@@ -1,26 +1,16 @@
 ﻿using FinancialAssistent.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Repositories
 {
-    // Repositories/UserRepository.cs
     public class UserRepository : IUserRepository
     {
 
-        private string connectionString;
+        private string _connectionString;
 
         public UserRepository(string connectionString)
         {
-            this.connectionString = connectionString;
-        }
-
-        public UserRepository()
-        {
+            _connectionString = connectionString;
         }
 
         public void AddUser(User user)
@@ -34,7 +24,7 @@ namespace FinancialAssistent.Repositories
 
         public User GetUserByEmail(string email)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -67,7 +57,7 @@ namespace FinancialAssistent.Repositories
 
         public void UpdateUser(User user)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 

@@ -1,11 +1,6 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Services;
 using FinancialAssistent.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Presenters
 {
@@ -13,11 +8,11 @@ namespace FinancialAssistent.Presenters
     {
 
         private readonly IBudgetService _budgetService;
-        private AIHelperForm aIHelper;
+        private AIHelperForm _aIHelper;
 
         public BudgetPresenter(AIHelperForm aIHelper, IBudgetService budgetService)
         {
-            this.aIHelper = aIHelper;
+            _aIHelper = aIHelper;
             _budgetService = budgetService;
         }
 

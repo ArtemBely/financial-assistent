@@ -84,7 +84,7 @@ namespace FinancialAssistent.Views
             }
             finally
             {
-                this.Close();
+                Close();
             }
         }
 
@@ -117,7 +117,7 @@ namespace FinancialAssistent.Views
 
             finally
             {
-                this.Close();
+                Close();
             }
         }
 
@@ -125,8 +125,8 @@ namespace FinancialAssistent.Views
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void EditTransactionForm_Load(object sender, EventArgs e)

@@ -1,11 +1,6 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Repositories;
 using Microsoft.Data.Sqlite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Services
 {
@@ -33,9 +28,9 @@ namespace FinancialAssistent.Services
 
         public User AuthenticateUser(string email, string password)
         {
-            string dbPath = "jasonbourne.db";
+            string dbPath = System.Configuration.ConfigurationManager.AppSettings["dbTitle"];
             string connectionString = $"Data Source={dbPath}";
-            User user = null;
+            User? user = null;
 
             using (var connection = new SqliteConnection(connectionString))
             {

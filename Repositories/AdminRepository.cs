@@ -1,21 +1,16 @@
 ﻿using FinancialAssistent.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Repositories
 {
     public class AdminRepository : IAdminRepository
     {
 
-        private string connectionString;
+        private string _connectionString;
 
         public AdminRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            _connectionString = connectionString;
 
         }
 
@@ -24,7 +19,7 @@ namespace FinancialAssistent.Repositories
             var users = new List<User>();
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
                     var query = System.Configuration.ConfigurationManager.AppSettings["FetchAllCustomersQuery"];

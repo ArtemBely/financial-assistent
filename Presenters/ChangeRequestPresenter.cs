@@ -1,11 +1,6 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Services;
 using FinancialAssistent.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Presenters
 {
@@ -13,20 +8,20 @@ namespace FinancialAssistent.Presenters
     {
         private readonly IChangeRequestService _changeRequestService;
         private readonly IUserService _userService;
-        private AdminRequestsForm adminRequestsForm;
-        private ChangeRequestForm changeRequestForm;
+        private AdminRequestsForm _adminRequestsForm;
+        private ChangeRequestForm _changeRequestForm;
 
 
         public ChangeRequestPresenter(ChangeRequestForm changeRequestForm, IChangeRequestService changeRequestService, IUserService userService)
         {
-            this.changeRequestForm = changeRequestForm;
+            _changeRequestForm = changeRequestForm;
             _changeRequestService = changeRequestService;
             _userService = userService;
         }
 
         public ChangeRequestPresenter(AdminRequestsForm adminRequestsForm, IChangeRequestService changeRequestService)
         {
-            this.adminRequestsForm = adminRequestsForm;
+            _adminRequestsForm = adminRequestsForm;
             _changeRequestService = changeRequestService;
         }
 
@@ -43,14 +38,14 @@ namespace FinancialAssistent.Presenters
         public List<ChangeRequest> GetRequestsByUser(int userId)
         {
             var requests = _changeRequestService.GetAllChangesByUserId(userId);
-            adminRequestsForm.UpdateChangeRequestsList(requests);
+            _adminRequestsForm.UpdateChangeRequestsList(requests);
             return requests;
         }
 
         public void LoadRequests()
         {
             var requests = _changeRequestService.GetAllChanges();
-            adminRequestsForm.UpdateChangeRequestsList(requests);
+            _adminRequestsForm.UpdateChangeRequestsList(requests);
         }
 
         public void UpdateUserBasedOnChangeRequest(User user)

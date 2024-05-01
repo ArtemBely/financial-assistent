@@ -1,18 +1,5 @@
-﻿using FinancialAssistent.Models;
-using FinancialAssistent.Presenters;
+﻿using FinancialAssistent.Presenters;
 using FinancialAssistent.Services;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using User = FinancialAssistent.Models.User;
 
 namespace FinancialAssistent.Views

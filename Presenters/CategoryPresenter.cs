@@ -9,32 +9,32 @@ namespace FinancialAssistent.Presenters
 
         private TransactionForm transactionForm;
 
-        private ICategoryService _categoryService;
-        private EditTransactionForm editTransactionForm;
-        private CategoryService categoryService;
-        private AIHelperForm aIHelperForm;
+        private ICategoryService _iCategoryService;
+        private EditTransactionForm _editTransactionForm;
+        private CategoryService _categoryService;
+        private AIHelperForm _aIHelperForm;
 
         public CategoryPresenter(TransactionForm transactionForm, CategoryService categoryService)
         {
-           this.transactionForm = transactionForm;
-           _categoryService = categoryService;
+            this.transactionForm = transactionForm;
+            _iCategoryService = categoryService;
         }
 
         public CategoryPresenter(EditTransactionForm editTransactionForm, CategoryService categoryService)
         {
-            this.editTransactionForm = editTransactionForm;
-            _categoryService = categoryService;
+            _editTransactionForm = editTransactionForm;
+            _iCategoryService = categoryService;
         }
 
         public CategoryPresenter(AIHelperForm aIHelperForm, CategoryService categoryService)
         {
-            this.aIHelperForm = aIHelperForm;
-            this.categoryService = categoryService;
+            _aIHelperForm = aIHelperForm;
+            _categoryService = categoryService;
         }
 
         public List<Category> LoadCategories()
         {
-            var categories = _categoryService.GetCategories();
+            var categories = _iCategoryService.GetCategories();
             transactionForm.UpdateCategories(categories);
             return categories;
         }
@@ -42,7 +42,7 @@ namespace FinancialAssistent.Presenters
 
         public void SaveCategory(string category)
         {
-            bool isSuccess = _categoryService.AddCategory(category);
+            bool isSuccess = _iCategoryService.AddCategory(category);
             if (!isSuccess)
             {
                 MessageBox.Show("Category with this name already exists. Please enter a different name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -52,12 +52,12 @@ namespace FinancialAssistent.Presenters
 
         public void RemoveCategory(string categoryName)
         {
-            _categoryService.RemoveCategory(categoryName);
+            _iCategoryService.RemoveCategory(categoryName);
         }
 
         public void UpdateCategory(Category category)
         {
-            _categoryService.UpdateCategory(category);
+            _iCategoryService.UpdateCategory(category);
         }
 
     }

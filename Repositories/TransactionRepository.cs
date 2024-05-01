@@ -1,26 +1,20 @@
 ﻿using FinancialAssistent.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
-        private string connectionString;
+        private string _connectionString;
 
         public TransactionRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            _connectionString = connectionString;
         }
 
         public void AddTransaction(Transaction transaction)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -40,7 +34,7 @@ namespace FinancialAssistent.Repositories
 
         public void UpdateTransaction(Transaction transaction)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -63,7 +57,7 @@ namespace FinancialAssistent.Repositories
             var transactions = new List<Transaction>();
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
                     var query = System.Configuration.ConfigurationManager.AppSettings["FetchAllTransactionsQuery"];
@@ -96,7 +90,7 @@ namespace FinancialAssistent.Repositories
 
         public void RemoveTransaction(int transactionId)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
                 var query = System.Configuration.ConfigurationManager.AppSettings["DeleteOneTransactionsQuery"];
@@ -115,7 +109,7 @@ namespace FinancialAssistent.Repositories
             var transactions = new List<Transaction>();
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
                     var query = System.Configuration.ConfigurationManager.AppSettings["FetchTransactionsByUserPerMonthQuery"];

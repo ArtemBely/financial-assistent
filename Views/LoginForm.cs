@@ -1,7 +1,6 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Presenters;
 using FinancialAssistent.Services;
-using System.Windows.Forms;
 
 namespace FinancialAssistent.Views
 {
@@ -65,9 +64,5 @@ namespace FinancialAssistent.Views
 
         }
 
-        private void passwordTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

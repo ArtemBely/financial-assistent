@@ -1,11 +1,6 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace FinancialAssistent.Services
@@ -14,17 +9,17 @@ namespace FinancialAssistent.Services
     {
         private readonly string _connectionString;
 
-        private TransactionRepository repository;
+        private TransactionRepository _repository;
 
         public TransactionService()
         {
             _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            repository = new TransactionRepository(_connectionString);
+            _repository = new TransactionRepository(_connectionString);
         }
 
         public List<Transaction> GetTransactionsForUser(int userId)
         {
-            return repository.FetchTransactions(userId);
+            return _repository.FetchTransactions(userId);
 
         }
 
@@ -75,24 +70,24 @@ namespace FinancialAssistent.Services
             return dataPoints;
         }
 
-       public void AddTransaction(Transaction transaction)
-       {
-            repository.AddTransaction(transaction);
-       }
+        public void AddTransaction(Transaction transaction)
+        {
+            _repository.AddTransaction(transaction);
+        }
 
         public void RemoveTransaction(int transactionId)
         {
-            repository.RemoveTransaction(transactionId);
+            _repository.RemoveTransaction(transactionId);
         }
 
         public void UpdateTransaction(Transaction transaction)
         {
-            repository.UpdateTransaction(transaction);
+            _repository.UpdateTransaction(transaction);
         }
 
         public List<Transaction> GetRecentTransactionsForUser(int userId)
         {
-            return repository.FetchTransactionsForLastMonth(userId);
+            return _repository.FetchTransactionsForLastMonth(userId);
         }
     }
 

@@ -4,7 +4,6 @@ C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\Financial
 C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\FinancialAssistent.dll
 C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\FinancialAssistent.pdb
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.csproj.AssemblyReference.cache
-C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.Form1.resources
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.csproj.GenerateResource.cache
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\belysheva\Desktop\FinancialAssistent\obj\Debug\net7.0-windows\FinancialAssistent.AssemblyInfoInputs.cache
@@ -97,7 +96,6 @@ C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\runtimes\
 C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\appsettings.json
 C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\FinancialAssistent.dll.config
 C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.dll
 C:\Users\belysheva\Desktop\FinancialAssistent\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll

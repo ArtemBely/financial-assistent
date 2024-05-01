@@ -1,17 +1,9 @@
 ﻿using FinancialAssistent.Models;
-using FinancialAssistent.Repositories;
 using FinancialAssistent.Services;
 using FinancialAssistent.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FinancialAssistent.Presenters
 {
-    // Presenters/UserLoginPresenter.cs
     public class UserLoginPresenter
     {
         private readonly IUserLoginView _view;

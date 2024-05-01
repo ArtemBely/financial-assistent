@@ -1,10 +1,5 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Services
 {
@@ -12,33 +7,33 @@ namespace FinancialAssistent.Services
     {
         private readonly string _connectionString;
 
-        private CategoryRepository categoryRepository;
+        private CategoryRepository _categoryRepository;
 
         public CategoryService()
         {
             _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            categoryRepository = new CategoryRepository(_connectionString);
+            _categoryRepository = new CategoryRepository(_connectionString);
         }
 
         public bool AddCategory(string category)
         {
-            return categoryRepository.AddCategory(category);
+            return _categoryRepository.AddCategory(category);
         }
 
         public List<Category> GetCategories()
         {
-            return categoryRepository.FetchCategories();
+            return _categoryRepository.FetchCategories();
 
         }
 
         public void RemoveCategory(string categoryName)
         {
-            categoryRepository.RemoveCategory(categoryName);
+            _categoryRepository.RemoveCategory(categoryName);
         }
 
         public void UpdateCategory(Category category)
         {
-            categoryRepository.UpdateCategory(category);
+            _categoryRepository.UpdateCategory(category);
         }
     }
 }

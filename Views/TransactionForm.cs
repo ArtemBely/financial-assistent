@@ -12,8 +12,8 @@ namespace FinancialAssistent.Views
         private CategoryPresenter _categoryPresenter;
         private AIPresenter _aiPresenter;
         private bool _categoriesLoaded = false;
-        private List<Category> allCategories;
-        private List<Transaction> allTransactions;
+        private List<Category> _allCategories;
+        private List<Transaction> _allTransactions;
 
 
         public TransactionForm(int userId)
@@ -31,7 +31,7 @@ namespace FinancialAssistent.Views
             _presenter.LoadTransactions(_userId);
             if (!_categoriesLoaded)
             {
-                allCategories = _categoryPresenter.LoadCategories();
+                _allCategories = _categoryPresenter.LoadCategories();
                 _categoriesLoaded = true;
             }
         }
@@ -58,10 +58,10 @@ namespace FinancialAssistent.Views
                 return;
             }
 
-            Transaction transactionToEdit = allTransactions.FirstOrDefault(t => t.TransactionId == transactionId.Value);
+            Transaction transactionToEdit = _allTransactions.FirstOrDefault(t => t.TransactionId == transactionId.Value);
             if (transactionToEdit != null)
             {
-                EditTransactionForm editForm = new EditTransactionForm(transactionToEdit, allCategories);
+                EditTransactionForm editForm = new EditTransactionForm(transactionToEdit, _allCategories);
                 editForm.TransactionUpdated += (sender, e) =>
                 {
                     EditForm_TransactionUpdated(sender, e);
@@ -83,7 +83,7 @@ namespace FinancialAssistent.Views
                 MessageBox.Show("Please select a category to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Category categoryToEdit = allCategories.FirstOrDefault(c => c.CategoryName.Equals(categoryName, StringComparison.OrdinalIgnoreCase));
+            Category categoryToEdit = _allCategories.FirstOrDefault(c => c.CategoryName.Equals(categoryName, StringComparison.OrdinalIgnoreCase));
             if (categoryToEdit != null)
             {
                 EditTransactionForm editForm = new EditTransactionForm(categoryToEdit);
@@ -113,7 +113,7 @@ namespace FinancialAssistent.Views
             if (decimal.TryParse(amountBtn.Text, out decimal amount) && categoryCombobox.SelectedItem != null)
             {
                 string selectedCategoryName = categoryCombobox.SelectedItem.ToString();
-                var category = allCategories.FirstOrDefault(c => c.CategoryName == selectedCategoryName);
+                var category = _allCategories.FirstOrDefault(c => c.CategoryName == selectedCategoryName);
                 if (category != null)
                 {
                     var transaction = new Transaction
@@ -137,7 +137,7 @@ namespace FinancialAssistent.Views
 
         public void UpdateTransactionsList(List<Transaction> transactions)
         {
-            allTransactions = transactions;
+            _allTransactions = transactions;
             allTransactionListView.Items.Clear();
 
             if (allTransactionListView.Columns.Count == 0)
@@ -171,7 +171,7 @@ namespace FinancialAssistent.Views
                 allCategoryListView.Columns.Add("Category", -2, HorizontalAlignment.Left);
             }
 
-            allCategories = categories;
+            _allCategories = categories;
             foreach (var category in categories)
             {
                 categoryCombobox.Items.Add(category.CategoryName);
@@ -250,7 +250,7 @@ namespace FinancialAssistent.Views
             return null;
         }
 
-        private string GetSelectedCategoryName()
+        private string? GetSelectedCategoryName()
         {
             if (allCategoryListView.SelectedItems.Count == 0)
             {

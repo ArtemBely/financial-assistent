@@ -51,7 +51,7 @@
             passwordTextBox.Size = new Size(242, 27);
             passwordTextBox.TabIndex = 1;
             passwordTextBox.UseSystemPasswordChar = true;
-            passwordTextBox.TextChanged += passwordTextBox_TextChanged;
+            //passwordTextBox.TextChanged += passwordTextBox_TextChanged;
             // 
             // loginButton
             // 

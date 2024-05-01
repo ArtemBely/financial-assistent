@@ -1,16 +1,11 @@
 ﻿using FinancialAssistent.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Repositories
 {
     internal interface ITransactionRepository
     {
-        public List<Transaction> FetchTransactions(int userId);
-        public List<Transaction> FetchTransactionsForLastMonth(int userId);
+        List<Transaction> FetchTransactions(int userId);
+        List<Transaction> FetchTransactionsForLastMonth(int userId);
         void AddTransaction(Transaction transaction);
         void RemoveTransaction(int transactionId);
         void UpdateTransaction(Transaction transaction);

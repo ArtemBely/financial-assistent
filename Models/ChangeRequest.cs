@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FinancialAssistent.Models
+﻿namespace FinancialAssistent.Models
 {
     public class ChangeRequest
     {
@@ -15,7 +9,7 @@ namespace FinancialAssistent.Models
         public string NewEmail { get; set; }
         public DateTime NewDateOfBirth { get; set; }
         public string NewPhoneNumber { get; set; }
-        public ChangeRequestStatus Status { get; set; } 
+        public ChangeRequestStatus Status { get; set; }
         public string Comment { get; set; }
         public DateTime RequestDate { get; set; }
 

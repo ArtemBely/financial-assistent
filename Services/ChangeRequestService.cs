@@ -1,10 +1,5 @@
 ﻿using FinancialAssistent.Models;
 using FinancialAssistent.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Services
 {
@@ -12,36 +7,36 @@ namespace FinancialAssistent.Services
     {
         private readonly string _connectionString;
 
-        private ChangeRequestRepository repository;
+        private ChangeRequestRepository _repository;
 
         public ChangeRequestService()
         {
             _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            repository = new ChangeRequestRepository(_connectionString);
+            _repository = new ChangeRequestRepository(_connectionString);
         }
         public void AddChangeRequest(ChangeRequest changeRequest)
         {
-            repository.AddChangeRequest(changeRequest);
+            _repository.AddChangeRequest(changeRequest);
         }
 
         public ChangeRequest FindPendingRequestByUserId(int userId)
         {
-            return repository.FindPendingRequestByUserId(userId);
+            return _repository.FindPendingRequestByUserId(userId);
         }
 
         public List<ChangeRequest> GetAllChanges()
         {
-           return repository.GetAllChanges();
+            return _repository.GetAllChanges();
         }
 
         public List<ChangeRequest> GetAllChangesByUserId(int userId)
         {
-            return repository.GetAllChangesByUserId(userId);
+            return _repository.GetAllChangesByUserId(userId);
         }
 
         public void UpdateChangeRequest(ChangeRequest changeRequest)
         {
-            repository.UpdateChangeRequest(changeRequest);
+            _repository.UpdateChangeRequest(changeRequest);
         }
     }
 

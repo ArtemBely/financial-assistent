@@ -1,32 +1,26 @@
 ﻿using FinancialAssistent.Models;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace FinancialAssistent.Repositories
 {
     public class BudgetRepository : IBudgetRepository
     {
 
-        private string connectionString;
+        private string _connectionString;
 
         public BudgetRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            _connectionString = connectionString;
         }
 
         public void AddBudget(Budget budget)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
-                var query = System.Configuration.ConfigurationManager.AppSettings["InsertNewBudget"];
+                var query = ConfigurationManager.AppSettings["InsertNewBudget"];
                 using (var command = new SQLiteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId", budget.UserId);
@@ -44,7 +38,7 @@ namespace FinancialAssistent.Repositories
             var budgets = new List<Budget>();
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
                     var query = ConfigurationManager.AppSettings["FindBudgetByUserQuery"];
@@ -77,7 +71,7 @@ namespace FinancialAssistent.Repositories
 
         public Budget FindByUserAndCategory(int userId, int categoryId)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -109,7 +103,7 @@ namespace FinancialAssistent.Repositories
 
         public void UpdateBudget(Budget budget)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 

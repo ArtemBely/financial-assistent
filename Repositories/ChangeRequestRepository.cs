@@ -1,28 +1,22 @@
 ﻿using FinancialAssistent.Models;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinancialAssistent.Repositories
 {
     internal class ChangeRequestRepository : IChangeRequestRepository
     {
 
-        private string connectionString;
+        private string _connectionString;
 
         public ChangeRequestRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            _connectionString = connectionString;
         }
 
 
         public void AddChangeRequest(ChangeRequest changeRequest)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 
@@ -47,8 +41,8 @@ namespace FinancialAssistent.Repositories
 
         public ChangeRequest FindPendingRequestByUserId(int userId)
         {
-            ChangeRequest request = null;
-            using (var connection = new SQLiteConnection(connectionString))
+            ChangeRequest? request = null;
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
                 var query = System.Configuration.ConfigurationManager.AppSettings["CheckUserChangeRequestStatus"];
@@ -83,7 +77,7 @@ namespace FinancialAssistent.Repositories
             var changeRequests = new List<ChangeRequest>();
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
                     var query = System.Configuration.ConfigurationManager.AppSettings["FetchAllChangeRequestsQuery"];
@@ -124,7 +118,7 @@ namespace FinancialAssistent.Repositories
             var changeRequests = new List<ChangeRequest>();
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
                     var query = System.Configuration.ConfigurationManager.AppSettings["FetchChangeRequestsByUser"];
@@ -163,7 +157,7 @@ namespace FinancialAssistent.Repositories
 
         public void UpdateChangeRequest(ChangeRequest changeRequest)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
 

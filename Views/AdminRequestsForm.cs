@@ -27,7 +27,7 @@ namespace FinancialAssistent.Views
         {
             if (_userId.HasValue)
             {
-                 _presenter.GetRequestsByUser(_userId.Value);
+                _presenter.GetRequestsByUser(_userId.Value);
                 processBtn.Text = "OK";
             }
             else
